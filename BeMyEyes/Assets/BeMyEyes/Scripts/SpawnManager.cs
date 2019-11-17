@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Realtime;
+using Photon.Pun;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -22,6 +24,6 @@ public class SpawnManager : MonoBehaviour
             sprite.enabled = false;
         }
         _x = Random.Range(-3.6f, 3.6f);
-        Instantiate(obstacle, new Vector3 (_x, 6.5f, 0), Quaternion.identity);
+        PhotonNetwork.Instantiate("Obstacle", new Vector3(_x, 6.5f, 0), Quaternion.identity);
     }
 }

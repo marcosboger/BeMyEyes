@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     public Joystick joystick;
     private float _horizontalMove;
     public float speed = 5.0f;
+    public GameObject gameOver;
+    public GameObject restart;
     
 
     // Update is called once per frame
@@ -48,7 +50,9 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Obstacle")
         {
-            //Destroy(gameObject);
+            Destroy(gameObject);
+            gameOver.SetActive(true);
+            restart.SetActive(true);
         }
     }
 }

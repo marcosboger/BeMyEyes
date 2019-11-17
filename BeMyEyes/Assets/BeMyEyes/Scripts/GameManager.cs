@@ -48,6 +48,7 @@ namespace Com.MyCompany.MyGame
         #region Private Fields
 
         private bool _ownership = false;
+        private GameObject[] obstacles;
 
         #endregion
 
@@ -60,25 +61,33 @@ namespace Com.MyCompany.MyGame
         private GameObject input;
 
         [SerializeField]
-        private SpawnManager spawnManager;
+        private GameObject spawnManager;
 
         #endregion
 
         #region MonoBehaviour Callbacks
         private void Update()
         {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
+                foreach(GameObject o in obstacles)
+                {
+                    o.GetComponent<SpriteRenderer>().enabled = false;
+                }
+            }
             if(SceneManager.GetActiveScene().name == "RacingGame" && _ownership == false)
             {
                 _ownership = true;
                 if (PhotonNetwork.IsMasterClient && PhotonNetwork.IsConnected)
                 {
                     _player.RequestOwnership();
-                    spawnManager.spriteRender = false;
                     Debug.Log("Control Taken!");
                 }
                 else if(PhotonNetwork.IsConnected)
                 {
                     input.SetActive(false);
+                    spawnManager.SetActive(true);
                 }
             }
         }
@@ -90,6 +99,12 @@ namespace Com.MyCompany.MyGame
         public void LeaveRoom()
         {
             PhotonNetwork.LeaveRoom();
+        }
+
+        public void BackToMenu()
+        {
+            PhotonNetwork.Disconnect();
+            SceneManager.LoadScene(0);
         }
 
 

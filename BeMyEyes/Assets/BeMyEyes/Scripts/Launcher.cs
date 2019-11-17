@@ -12,6 +12,12 @@ namespace Com.MyCompany.MyGame
         [SerializeField]
         private byte maxPlayersPerRoom = 4;
 
+        [SerializeField]
+        private GameObject Play;
+
+        [SerializeField]
+        private GameObject Wait;
+
         #endregion
 
 
@@ -75,12 +81,16 @@ namespace Com.MyCompany.MyGame
             {
                 // #Critical we need at this point to attempt joining a Random Room. If it fails, we'll get notified in OnJoinRandomFailed() and we'll create one.
                 PhotonNetwork.JoinRoom("Test");
+                Play.SetActive(false);
+                Wait.SetActive(true);
             }
             else
             {
                 // #Critical, we must first and foremost connect to Photon Online Server.
                 PhotonNetwork.GameVersion = gameVersion;
                 PhotonNetwork.ConnectUsingSettings();
+                Play.SetActive(false);
+                Wait.SetActive(true);
             }
         }
 

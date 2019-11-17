@@ -331,6 +331,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36300ad3f703b964fb4e8c42be9649ec, type: 3}
+--- !u!1 &629154981 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1554978224749808, guid: 36300ad3f703b964fb4e8c42be9649ec,
+    type: 3}
+  m_PrefabInstance: {fileID: 629154980}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &780428843
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,6 +446,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 345cccfd4e2283945bb1682131386641, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 2040173984}
+  input: {fileID: 629154981}
+  spawnManager: {fileID: 1796692033}
 --- !u!4 &1330889108
 Transform:
   m_ObjectHideFlags: 0
@@ -673,6 +682,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacle: {fileID: 4844619389352921894, guid: a7df22747b72750418ddcdd75b9c790d,
     type: 3}
+  spriteRender: 1
   spawnTime: 1
 --- !u!1 &1902254530
 GameObject:
@@ -791,6 +801,8 @@ GameObject:
   - component: {fileID: 2040173980}
   - component: {fileID: 2040173982}
   - component: {fileID: 2040173981}
+  - component: {fileID: 2040173983}
+  - component: {fileID: 2040173984}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -874,6 +886,43 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.85710084, y: 1.352485}
   m_EdgeRadius: 0
+--- !u!114 &2040173983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040173978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+--- !u!114 &2040173984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040173978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 1
+  ObservedComponents:
+  - {fileID: 2040173983}
+  viewIdField: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &2078613885
 GameObject:
   m_ObjectHideFlags: 0

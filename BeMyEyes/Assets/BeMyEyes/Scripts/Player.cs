@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class Player : MonoBehaviour
 {
@@ -14,6 +16,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameObject.GetComponent<PhotonView>().IsMine == false && PhotonNetwork.IsConnected == true)
+        {
+            return;
+        }
         //Control by touching
         //if(Input.touchCount > 0)
         //{
@@ -42,7 +48,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Obstacle")
         {
-            GameManager.Instance.GameOver();
+            //Destroy(gameObject);
         }
     }
 }

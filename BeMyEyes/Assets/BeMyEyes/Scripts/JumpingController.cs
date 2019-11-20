@@ -7,7 +7,7 @@ public class JumpingController : MonoBehaviour
 {
     private Touch touch;
     private Rigidbody2D rb;
-    private float jumpForce = 600f;
+    private float jumpForce = 1000f;
 
     // Start is called before the first frame update
     void Start()

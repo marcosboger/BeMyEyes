@@ -7,23 +7,49 @@ using Photon.Pun;
 public class SpawnManager : MonoBehaviour
 {
     public GameObject obstacle;
-    private SpriteRenderer sprite;
-    public bool spriteRender = true;
     public float spawnTime = 0.5f;
     private float _x;
     private void Start()
     {
-        sprite = obstacle.GetComponent<SpriteRenderer>();
         InvokeRepeating("Spawn", spawnTime, spawnTime);
     }
 
     void Spawn()
     {
-        if (spriteRender == false)
+        _x = Random.Range(0,6);
+        _x = Mathf.Floor(_x);
+        if(_x == 0)
         {
-            sprite.enabled = false;
+            PhotonNetwork.Instantiate("Obstacle", new Vector3(3, 5.7f, 0), Quaternion.identity);
         }
-        _x = Random.Range(-3.6f, 3.6f);
-        PhotonNetwork.Instantiate("Obstacle", new Vector3(_x, 6.5f, 0), Quaternion.identity);
+        else if(_x == 1)
+        {
+            PhotonNetwork.Instantiate("Obstacle", new Vector3(4.41f, 5.7f, 0), Quaternion.identity);
+        }
+        else if(_x == 2)
+        {
+            PhotonNetwork.Instantiate("Obstacle", new Vector3(1.59f, 5.7f, 0), Quaternion.identity);
+        }
+        else if(_x == 3)
+        {
+            PhotonNetwork.Instantiate("Obstacle", new Vector3(3, 5.7f, 0), Quaternion.identity);
+            PhotonNetwork.Instantiate("Obstacle", new Vector3(4.41f, 5.7f, 0), Quaternion.identity);
+        }
+        else if(_x == 4)
+        {
+            PhotonNetwork.Instantiate("Obstacle", new Vector3(3, 5.7f, 0), Quaternion.identity);
+            PhotonNetwork.Instantiate("Obstacle", new Vector3(-1.59f, 5.7f, 0), Quaternion.identity);
+        }
+        else if(_x == 5)
+        {
+            PhotonNetwork.Instantiate("Obstacle", new Vector3(4.41f, 5.7f, 0), Quaternion.identity);
+            PhotonNetwork.Instantiate("Obstacle", new Vector3(-1.59f, 5.7f, 0), Quaternion.identity);
+        }
+        //PhotonNetwork.Instantiate("Obstacle", new Vector3(_x, 6.5f, 0), Quaternion.identity);
+    }
+
+    public void gameOver()
+    {
+        CancelInvoke();
     }
 }

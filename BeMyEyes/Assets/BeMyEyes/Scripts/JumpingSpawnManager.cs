@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class JumpingSpawnManager : MonoBehaviour
 {
-    public GameObject cubinho;
-    private float spawnTime = 8.0f;
+    public GameObject JumpingObstacle;
+    private float spawnTime = 3.0f;
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("Spawn", spawnTime, spawnTime);
+        InvokeRepeating("Spawn", 0, spawnTime);
     }
 
     // Update is called once per frame
     void Spawn()
     {
-        Instantiate(cubinho, new Vector3(15.5f, -0.88f, 0), Quaternion.identity);
+        Instantiate(JumpingObstacle, new Vector3(1f, -0.58f, 0), Quaternion.identity);
     }
 }

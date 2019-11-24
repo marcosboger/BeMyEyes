@@ -19,10 +19,18 @@ public class JumpingController : MonoBehaviour
     void Update()
     {
         //Control by touching
-        if(Input.touchCount > 0 || Input.GetMouseButtonDown(0))
+        if((Input.touchCount > 0 || Input.GetMouseButtonDown(0)) && rb.velocity.y == 0)
         {
-            Debug.Log("touch");
             rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Force);
+        }
+
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Obstacle")
+        {
+            collision.gameObject.GetComponent<SpriteRenderer>().enabled = true;
         }
     }
 }

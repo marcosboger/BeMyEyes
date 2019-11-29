@@ -258,7 +258,7 @@ GameObject:
   m_Component:
   - component: {fileID: 595688154}
   - component: {fileID: 595688155}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +274,7 @@ Transform:
   m_GameObject: {fileID: 595688153}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.283464, y: 0.27142686, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 760958202}
   m_RootOrder: 0
@@ -317,7 +317,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bb8cc079788169c4daf8e537b3e74d35, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 79c05cfbed0b2574fbbd72235a8fb11f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -340,7 +340,7 @@ GameObject:
   - component: {fileID: 760958201}
   - component: {fileID: 760958203}
   - component: {fileID: 760958204}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -359,6 +359,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d60a0608a27c64babe817b9924a2ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpForce: 650
+  _rotSpeed: 380
+  _grounded: 1
 --- !u!4 &760958202
 Transform:
   m_ObjectHideFlags: 0
@@ -367,7 +370,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 760958200}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.92, y: -2.75, z: -1}
+  m_LocalPosition: {x: -1.72, y: -3.4, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 595688154}
@@ -389,7 +392,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 5
+  m_GravityScale: 5.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -408,7 +411,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.19508743}
+  m_Offset: {x: -0.0016217828, y: 0.025215626}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -419,7 +422,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.433425}
+  m_Size: {x: 0.61249435, y: 0.6082964}
   m_EdgeRadius: 0
 --- !u!1 &1676862097
 GameObject:

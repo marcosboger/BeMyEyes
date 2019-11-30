@@ -23,6 +23,10 @@ public class JumpingController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(transform.position.x <= -1.72)
+        {
+            transform.position = new Vector3(-1.72f, transform.position.y, transform.position.z);
+        }
         _grounded = Physics2D.Raycast(transform.position, Vector2.down, GetComponent<BoxCollider2D>().size.y / 2 + 0.1f);
         Debug.DrawRay(transform.position, Vector2.down, Color.green);
         if (_grounded)
@@ -40,7 +44,7 @@ public class JumpingController : MonoBehaviour
             transform.Rotate(0, 0, -1 * _rotSpeed * Time.deltaTime);
         }
         //Control by touching
-        if ((Input.touchCount > 0 || Input.GetMouseButtonDown(0)) && _grounded)
+        if ( ( (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) || Input.GetMouseButtonDown(0) ) && _grounded)
         {
             rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Force);
         }
@@ -55,7 +59,8 @@ public class JumpingController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Obstacle")
         {
-            collision.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            RestartManager.gameOver();
+            gameObject.SetActive(false);
         }
     }
 }

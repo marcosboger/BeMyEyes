@@ -22,6 +22,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
     {
 
         PhotonNetwork.GameVersion = gameVersion;
+        PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = "eu";
         PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.AutomaticallySyncScene = true;
     }

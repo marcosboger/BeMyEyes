@@ -17,7 +17,6 @@ public class SpawnManager : MonoBehaviour
     void Spawn()
     {
         _x = Random.Range(0,6);
-        _x = Mathf.Floor(_x);
         if(_x == 0)
         {
             PhotonNetwork.Instantiate("Obstacle", new Vector3(3, 5.7f, 0), Quaternion.identity);

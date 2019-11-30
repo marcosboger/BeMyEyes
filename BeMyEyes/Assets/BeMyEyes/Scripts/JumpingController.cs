@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 public class JumpingController : MonoBehaviour
 {
+    public GameObject JumpingSpawnManager;
+    public GameObject ScoreManager;
+    ScoreManager scoreScript;
     private Touch touch;
     private Rigidbody2D rb;
     [SerializeField]
@@ -18,6 +22,7 @@ public class JumpingController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        scoreScript = ScoreManager.GetComponent<ScoreManager>();
     }
 
     // Update is called once per frame
@@ -61,6 +66,8 @@ public class JumpingController : MonoBehaviour
         {
             RestartManager.gameOver();
             gameObject.SetActive(false);
+            JumpingSpawnManager.SetActive(false);
+            scoreScript.dead = true;
         }
     }
 }

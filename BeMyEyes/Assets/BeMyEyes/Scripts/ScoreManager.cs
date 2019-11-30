@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-    Text ScoreText;
+    public Text ScoreText;
 
     public bool dead = false;
     private float timer;
@@ -13,7 +13,6 @@ public class ScoreManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ScoreText = GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -33,5 +32,10 @@ public class ScoreManager : MonoBehaviour
             timer = 0;
 
         }
+    }
+
+    public void gameOver()
+    {
+        dead = true;
     }
 }

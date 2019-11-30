@@ -8,6 +8,7 @@ public class JumpingSpawnManager : MonoBehaviour
     public GameObject JumpingPlatform;
     private float spawnTime = 1.5f;
     private float _random;
+
     // Start is called before the first frame update
     void Start()
     {

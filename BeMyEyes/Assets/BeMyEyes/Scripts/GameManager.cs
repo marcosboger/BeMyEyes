@@ -53,7 +53,6 @@ namespace Com.MyCompany.MyGame
 
         public void BackToMenu()
         {
-            PhotonNetwork.Disconnect();
             SceneManager.LoadScene(0);
         }
 

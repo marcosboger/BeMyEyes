@@ -98,7 +98,10 @@ public class Player : MonoBehaviour
                 o.GetComponent<Obstacle>().enabled = false;
             }
             gameOver.SetActive(true);
-            restart.SetActive(true);
+            if (PhotonNetwork.IsMasterClient)
+            {
+                restart.SetActive(true);
+            }
         }
     }
 }

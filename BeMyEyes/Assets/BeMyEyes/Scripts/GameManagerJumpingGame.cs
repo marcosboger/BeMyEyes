@@ -1,29 +1,25 @@
-﻿using System;
-using System.Collections;
-
-
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-
-
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.SceneManagement;
 
-
-namespace Com.BeMyEyes.RacingGame
+namespace Com.BeMyEyes.JumpingGame
 {
-    public class GameManager : MonoBehaviourPunCallbacks
+    public class GameManagerJumpingGame : MonoBehaviour
     {
         private bool _ownership = false;
         private GameObject[] obstacles;
+        private GameObject[] platforms;
         private PhotonView _player;
         private GameObject spawnManager;
 
         private void Awake()
         {
             _player = GameObject.Find("Player").GetComponent<PhotonView>();
-            spawnManager = GameObject.Find("Spawn Manager");
-            if (SceneManager.GetActiveScene().name == "RacingGame" && _ownership == false)
+            spawnManager = GameObject.Find("JumpingSpawnManager");
+            if (SceneManager.GetActiveScene().name == "JumpingGame" && _ownership == false)
             {
                 if (PhotonNetwork.IsMasterClient && PhotonNetwork.IsConnected)
                 {
@@ -38,24 +34,22 @@ namespace Com.BeMyEyes.RacingGame
         {
             if (PhotonNetwork.IsMasterClient)
             {
+                platforms = GameObject.FindGameObjectsWithTag("Platform");
                 obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
-                foreach(GameObject o in obstacles)
+                foreach (GameObject o in obstacles)
                 {
                     o.GetComponent<SpriteRenderer>().enabled = false;
                 }
+                foreach (GameObject p in platforms)
+                {
+                    p.GetComponent<SpriteRenderer>().enabled = false;
+                }
             }
-        }
-        
-        public void LeaveRoom()
-        {
-            PhotonNetwork.LeaveRoom();
         }
 
         public void BackToMenu()
         {
             SceneManager.LoadScene(0);
         }
-
-        
     }
 }

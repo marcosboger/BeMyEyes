@@ -37,12 +37,12 @@ public class SpawnManager : MonoBehaviour
         else if(_x == 4)
         {
             PhotonNetwork.Instantiate("Obstacle", new Vector3(3, 5.7f, 0), Quaternion.identity);
-            PhotonNetwork.Instantiate("Obstacle", new Vector3(-1.59f, 5.7f, 0), Quaternion.identity);
+            PhotonNetwork.Instantiate("Obstacle", new Vector3(1.59f, 5.7f, 0), Quaternion.identity);
         }
         else if(_x == 5)
         {
             PhotonNetwork.Instantiate("Obstacle", new Vector3(4.41f, 5.7f, 0), Quaternion.identity);
-            PhotonNetwork.Instantiate("Obstacle", new Vector3(-1.59f, 5.7f, 0), Quaternion.identity);
+            PhotonNetwork.Instantiate("Obstacle", new Vector3(1.59f, 5.7f, 0), Quaternion.identity);
         }
         //PhotonNetwork.Instantiate("Obstacle", new Vector3(_x, 6.5f, 0), Quaternion.identity);
     }

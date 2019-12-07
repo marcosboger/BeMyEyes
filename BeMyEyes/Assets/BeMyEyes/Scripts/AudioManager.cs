@@ -20,10 +20,12 @@ public class AudioManager : Singleton<AudioManager>
     // Start is called before the first frame update
     void Start()
     {
-        musicVolume = GameObject.Find("Music Volume").GetComponent<Slider>();
-        effectsVolume = GameObject.Find("Effects Volume").GetComponent<Slider>();
+        //musicVolume = GameObject.Find("Music Volume").GetComponent<Slider>();
+        //effectsVolume = GameObject.Find("Effects Volume").GetComponent<Slider>();
         background.loop = true;
-        StartCoroutine(playSoundTrack());
+        background.clip = backgroundMusic1;
+        background.Play();
+        //StartCoroutine(playSoundTrack());
     }
 
     public void playSelectionClip()

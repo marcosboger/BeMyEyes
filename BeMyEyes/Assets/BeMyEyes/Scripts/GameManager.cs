@@ -41,7 +41,14 @@ namespace Com.BeMyEyes.RacingGame
                 obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
                 foreach(GameObject o in obstacles)
                 {
-                    o.GetComponent<SpriteRenderer>().enabled = false;
+                    if(o.transform.position.y < -3.2)
+                    {
+                        o.GetComponent<SpriteRenderer>().enabled = true;
+                    }
+                    else
+                    {
+                        o.GetComponent<SpriteRenderer>().enabled = false;
+                    }
                 }
             }
         }

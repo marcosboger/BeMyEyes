@@ -27,6 +27,10 @@ namespace Com.BeMyEyes.JumpingGame
                     Debug.Log("Control Taken!");
                     spawnManager.SetActive(false);
                 }
+                else if(PhotonNetwork.IsConnected)
+                {
+                    _player.GetComponent<Rigidbody2D>().simulated = false;
+                }
             }
         }
 
@@ -38,11 +42,28 @@ namespace Com.BeMyEyes.JumpingGame
                 obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
                 foreach (GameObject o in obstacles)
                 {
-                    o.GetComponent<SpriteRenderer>().enabled = false;
+                    if (o.transform.position.x <= -1.5)
+                    {
+                        o.GetComponent<platform>().see = true;
+                        o.GetComponent<SpriteRenderer>().enabled = true;
+                    }
+                    else if (!o.GetComponent<platform>().see)
+                    {
+                        o.GetComponent<SpriteRenderer>().enabled = false;
+                    }
+
                 }
                 foreach (GameObject p in platforms)
                 {
-                    p.GetComponent<SpriteRenderer>().enabled = false;
+                    if (p.transform.position.x <= -1.5)
+                    {
+                        p.GetComponent<platform>().see = true;
+                        p.GetComponent<SpriteRenderer>().enabled = true;
+                    }
+                    else if (!p.GetComponent<platform>().see)
+                    {
+                        p.GetComponent<SpriteRenderer>().enabled = false;
+                    }
                 }
             }
         }

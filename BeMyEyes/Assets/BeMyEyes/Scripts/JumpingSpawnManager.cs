@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class JumpingSpawnManager : MonoBehaviour
 {
-    public GameObject JumpingObstacle;
-    public GameObject JumpingPlatform;
     private float _random;
     private float timer = 0;
     private float waitTime = -1;
+    private bool _gameOver = false;
 
     // Start is called before the first frame update
     void Start()
@@ -19,97 +19,109 @@ public class JumpingSpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-        if (timer >= waitTime)
+        if (_gameOver)
         {
-            _random = Random.Range(0, 5);
-            if (_random == 0)
-            {
-                Instantiate(JumpingObstacle, new Vector3(3.07f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(3.56f, -3.48f, 0), Quaternion.identity);
-                waitTime = 1;
-            }
-            if (_random == 1)
-            {
-                Instantiate(JumpingObstacle, new Vector3(3.07f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(3.56f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(4.05f, -3.48f, 0), Quaternion.identity);
-                waitTime = 1;
-            }
-            if (_random == 2)
-            {
-                Instantiate(JumpingPlatform, new Vector3(3.07f, -2.75f, 0), Quaternion.identity);
-                Instantiate(JumpingPlatform, new Vector3(3.56f, -2.75f, 0), Quaternion.identity);
-                Instantiate(JumpingPlatform, new Vector3(4.05f, -2.75f, 0), Quaternion.identity);
-                Instantiate(JumpingPlatform, new Vector3(5.52f, -2.01f, 0), Quaternion.identity);
-                Instantiate(JumpingPlatform, new Vector3(6.01f, -2.01f, 0), Quaternion.identity);
-                Instantiate(JumpingPlatform, new Vector3(6.50f, -2.01f, 0), Quaternion.identity);
-
-                Instantiate(JumpingObstacle, new Vector3(3.07f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(3.56f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(4.05f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(4.54f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(5.03f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(5.52f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(6.01f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(6.50f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(6.99f, -3.48f, 0), Quaternion.identity);
-                waitTime = 1.7f;
-            }
-            if (_random == 3)
-            {
-                Instantiate(JumpingPlatform, new Vector3(3.07f, -2.75f, 0), Quaternion.identity);
-                Instantiate(JumpingPlatform, new Vector3(3.56f, -2.75f, 0), Quaternion.identity);
-                Instantiate(JumpingPlatform, new Vector3(4.05f, -2.75f, 0), Quaternion.identity);
-
-                Instantiate(JumpingObstacle, new Vector3(3.07f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(3.56f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(4.05f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(4.54f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(5.03f, -3.48f, 0), Quaternion.identity);
-                waitTime = 1.5f;
-            }
-            if (_random == 4)
-            {
-                Instantiate(JumpingPlatform, new Vector3(3.07f, -2.75f, 0), Quaternion.identity);
-                Instantiate(JumpingPlatform, new Vector3(3.56f, -2.75f, 0), Quaternion.identity);
-                Instantiate(JumpingPlatform, new Vector3(4.05f, -2.75f, 0), Quaternion.identity);
-                Instantiate(JumpingPlatform, new Vector3(5.52f, -2.01f, 0), Quaternion.identity);
-                Instantiate(JumpingPlatform, new Vector3(6.01f, -2.01f, 0), Quaternion.identity);
-                Instantiate(JumpingPlatform, new Vector3(6.50f, -2.01f, 0), Quaternion.identity);
-                Instantiate(JumpingPlatform, new Vector3(8.46f, -1.27f, 0), Quaternion.identity);
-                Instantiate(JumpingPlatform, new Vector3(8.95f, -1.27f, 0), Quaternion.identity);
-                Instantiate(JumpingPlatform, new Vector3(9.44f, -1.27f, 0), Quaternion.identity);
-                Instantiate(JumpingPlatform, new Vector3(11.89f, -1.27f, 0), Quaternion.identity);
-                Instantiate(JumpingPlatform, new Vector3(12.38f, -1.27f, 0), Quaternion.identity);
-                Instantiate(JumpingPlatform, new Vector3(12.87f, -1.27f, 0), Quaternion.identity);
-
-                Instantiate(JumpingObstacle, new Vector3(3.07f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(3.56f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(4.05f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(4.54f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(5.03f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(5.52f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(6.01f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(6.50f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(6.99f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(7.48f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(7.97f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(8.46f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(8.95f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(9.44f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(9.93f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(10.42f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(10.91f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(11.40f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(11.89f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(12.38f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(12.87f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(13.36f, -3.48f, 0), Quaternion.identity);
-                Instantiate(JumpingObstacle, new Vector3(13.85f, -3.48f, 0), Quaternion.identity);
-                waitTime = 3.2f;
-            }
-            timer = 0;
+            return;
         }
+        else
+        {
+            timer += Time.deltaTime;
+            if (timer >= waitTime)
+            {
+                _random = Random.Range(0, 5);
+                if (_random == 0)
+                {
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(3.07f, -3.48f, 0), Quaternion.identity);
+                    //PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(3.56f, -3.48f, 0), Quaternion.identity);
+                    waitTime = 2;
+                }
+                if (_random == 1)
+                {
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(3.07f, -3.48f, 0), Quaternion.identity);
+                    //PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(3.56f, -3.48f, 0), Quaternion.identity);
+                    //PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(4.05f, -3.48f, 0), Quaternion.identity);
+                    waitTime = 2;
+                }
+                if (_random == 2)
+                {
+                    PhotonNetwork.Instantiate("Platform", new Vector3(3.07f, -2.75f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("Platform", new Vector3(3.56f, -2.75f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("Platform", new Vector3(4.05f, -2.75f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("Platform", new Vector3(5.52f, -2.01f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("Platform", new Vector3(6.01f, -2.01f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("Platform", new Vector3(6.50f, -2.01f, 0), Quaternion.identity);
+
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(3.07f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(3.56f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(4.05f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(4.54f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(5.03f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(5.52f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(6.01f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(6.50f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(6.99f, -3.48f, 0), Quaternion.identity);
+                    waitTime = 3.4f;
+                }
+                if (_random == 3)
+                {
+                    PhotonNetwork.Instantiate("Platform", new Vector3(3.07f, -2.75f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("Platform", new Vector3(3.56f, -2.75f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("Platform", new Vector3(4.05f, -2.75f, 0), Quaternion.identity);
+
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(3.07f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(3.56f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(4.05f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(4.54f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(5.03f, -3.48f, 0), Quaternion.identity);
+                    waitTime = 3f;
+                }
+                if (_random == 4)
+                {
+                    PhotonNetwork.Instantiate("Platform", new Vector3(3.07f, -2.75f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("Platform", new Vector3(3.56f, -2.75f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("Platform", new Vector3(4.05f, -2.75f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("Platform", new Vector3(5.52f, -2.01f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("Platform", new Vector3(6.01f, -2.01f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("Platform", new Vector3(6.50f, -2.01f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("Platform", new Vector3(8.46f, -1.27f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("Platform", new Vector3(8.95f, -1.27f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("Platform", new Vector3(9.44f, -1.27f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("Platform", new Vector3(11.89f, -1.27f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("Platform", new Vector3(12.38f, -1.27f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("Platform", new Vector3(12.87f, -1.27f, 0), Quaternion.identity);
+
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(3.07f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(3.56f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(4.05f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(4.54f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(5.03f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(5.52f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(6.01f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(6.50f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(6.99f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(7.48f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(7.97f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(8.46f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(8.95f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(9.44f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(9.93f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(10.42f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(10.91f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(11.40f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(11.89f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(12.38f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(12.87f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(13.36f, -3.48f, 0), Quaternion.identity);
+                    PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(13.85f, -3.48f, 0), Quaternion.identity);
+                    waitTime = 6.4f;
+                }
+                timer = 0;
+            }
+        }
+    }
+
+    public void gameOver()
+    {
+        _gameOver = true;
     }
 }

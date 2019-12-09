@@ -14,8 +14,8 @@ public class AudioManager : Singleton<AudioManager>
     public AudioClip backgroundMusic3;
     public AudioClip errorClip;
 
-    private Slider musicVolume;
-    private Slider effectsVolume;
+    //private Slider musicVolume;
+    //private Slider effectsVolume;
 
     // Start is called before the first frame update
     void Start()
@@ -45,8 +45,8 @@ public class AudioManager : Singleton<AudioManager>
 
     public void setVolumeMusic()
     {
-        Debug.Log(musicVolume.value);
-        background.volume = musicVolume.value;
+        //Debug.Log(musicVolume.value);
+        //background.volume = musicVolume.value;
     }
 
     public void setEffects(bool check)
@@ -56,7 +56,7 @@ public class AudioManager : Singleton<AudioManager>
 
     public void setVolumeEffects()
     {
-        SFX.volume = effectsVolume.value;
+        //SFX.volume = effectsVolume.value;
     }
 
     IEnumerator playSoundTrack()

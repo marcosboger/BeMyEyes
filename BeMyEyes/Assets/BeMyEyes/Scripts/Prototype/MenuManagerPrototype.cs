@@ -110,6 +110,16 @@ public class MenuManagerPrototype : MonoBehaviourPunCallbacks
         _createJoinRoom.SetActive(false);
     }
 
+    public void handleClickBackButton()
+    {
+        Debug.Log("Back Clicked!");
+        AudioManager.Instance.playSelectionClip();
+        PhotonNetwork.LeaveRoom();
+        _playerGameSelection.SetActive(false);
+        _gameSelector.SetActive(false);
+        _createJoinRoom.SetActive(true);
+    }
+
     public void handleClickLeftArrow()
     {
         AudioManager.Instance.playSelectionClip();

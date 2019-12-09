@@ -17,9 +17,17 @@ public class JumpingController : MonoBehaviour
     private bool _rotation = false;
     [SerializeField]
     private bool _grounded = true;
+
+    private GameObject restart;
+
+    private GameObject[] obstacles;
+    private bool _gameOver = false;
     // Start is called before the first frame update
     void Start()
     {
+        PhotonNetwork.SendRate = 10;
+        PhotonNetwork.SerializationRate = 10;
+        restart = GameObject.Find("Restart");
         rb = GetComponent<Rigidbody2D>();
         scoreScript = ScoreManager.GetComponent<ScoreManager>();
     }
@@ -27,7 +35,11 @@ public class JumpingController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.x <= -1.72)
+        if (gameObject.GetComponent<PhotonView>().IsMine == false && PhotonNetwork.IsConnected == true)
+        {
+            return;
+        }
+        if (transform.position.x <= -1.72)
         {
             transform.position = new Vector3(-1.72f, transform.position.y, transform.position.z);
         }
@@ -61,12 +73,42 @@ public class JumpingController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Obstacle")
+        if(collision.gameObject.tag == "Platform" && PhotonNetwork.IsMasterClient)
         {
-            RestartManager.gameOver();
-            gameObject.SetActive(false);
+            collision.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            collision.gameObject.GetComponent<platform>().see = true;
+        }
+        if (collision.gameObject.tag == "Obstacle" && PhotonNetwork.IsMasterClient)
+        {
+            gameObject.GetComponent<JumpingController>().enabled = false;
             JumpingSpawnManager.SetActive(false);
             scoreScript.dead = true;
+            PhotonView photonView = PhotonView.Get(this);
+            photonView.RPC("GameOver", RpcTarget.All, collision.gameObject.transform.position);
+        }
+    }
+
+
+    [PunRPC]
+    void GameOver(Vector3 position)
+    {
+        if (!_gameOver)
+        {
+            _gameOver = true;
+            gameObject.GetComponent<JumpingController>().enabled = false;
+            obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
+            if (!PhotonNetwork.IsMasterClient)
+            {
+                GameObject.Find("JumpingSpawnManager").GetComponent<JumpingSpawnManager>().gameOver();
+            }
+            foreach (GameObject o in obstacles)
+            {
+                o.GetComponent<platform>().enabled = false;
+            }
+            if (PhotonNetwork.IsMasterClient)
+            {
+                restart.SetActive(true);
+            }
         }
     }
 }

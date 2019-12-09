@@ -35,5 +35,14 @@ MonoBehaviour:
   - Fire
   - RespawnSpaceship
   - GameOver
+  - buttonPress0
+  - buttonPress1
+  - buttonPress2
+  - buttonPress3
+  - buttonPress4
+  - buttonPress5
+  - buttonPress6
+  - colorPass
+  - gameOver
   DisableAutoOpenWizard: 1
   ShowSettings: 1

@@ -120,8 +120,8 @@ public class JumpingSpawnManager : MonoBehaviour
                 }
                 if(_random == 5)
                 {
-                    PhotonNetwork.Instantiate("Obstacle1", new Vector3(0, 0, 0), Quaternion.identity);
-                    waitTime = 4.0f;
+                    PhotonNetwork.Instantiate("ObstacleJumping1", new Vector3(0, 0, 0), Quaternion.identity);
+                    waitTime = 2.5f*multiplier + 1.5f;
                 }
                 timer = 0;
             }

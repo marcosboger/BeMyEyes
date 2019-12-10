@@ -1002,7 +1002,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacle: {fileID: 4844619389352921894, guid: a7df22747b72750418ddcdd75b9c790d,
     type: 3}
-  spawnTime: 1.75
 --- !u!1 &1902254530
 GameObject:
   m_ObjectHideFlags: 0

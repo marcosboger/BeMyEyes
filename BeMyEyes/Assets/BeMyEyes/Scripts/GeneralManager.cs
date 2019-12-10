@@ -11,8 +11,12 @@ public class GeneralManager : Singleton<GeneralManager>
 
     public void setRacingHighScore(int score)
     {
+        Debug.Log("Called Racing High Score");
         if (score > racingGameHighScore)
+        {
+            Debug.Log("Changed Racing High Score");
             racingGameHighScore = score;
+        }
     }
 
     public void setJumpingHighScore(int score)

@@ -36,6 +36,17 @@ public class ScoreManager : MonoBehaviour
 
     public void gameOver()
     {
+        Debug.Log(GeneralManager.Instance.gamePlayed);
+        if (GeneralManager.Instance.gamePlayed == "RacingGame")
+        {
+            Debug.Log(score);
+            GeneralManager.Instance.setRacingHighScore(score);
+        }
+        if (GeneralManager.Instance.gamePlayed == "JumpingGame")
+        {
+            Debug.Log(score);
+            GeneralManager.Instance.setJumpingHighScore(score);
+        }
         dead = true;
     }
 }

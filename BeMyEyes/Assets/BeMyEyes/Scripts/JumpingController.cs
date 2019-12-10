@@ -93,7 +93,7 @@ public class JumpingController : MonoBehaviour
     {
         if (!_gameOver)
         {
-            scoreScript.dead = true;
+            scoreScript.gameOver();
             _gameOver = true;
             gameObject.GetComponent<JumpingController>().enabled = false;
             obstacles = GameObject.FindGameObjectsWithTag("Obstacle");

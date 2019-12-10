@@ -180,6 +180,7 @@ public class ColorGameManager : MonoBehaviour
     [PunRPC]
     void gameOver()
     {
+        GeneralManager.Instance.setColourHighScore(score);
         buttonsUI.SetActive(false);
         text.SetActive(true);
         if (PhotonNetwork.IsMasterClient)

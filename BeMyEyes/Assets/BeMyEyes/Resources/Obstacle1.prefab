@@ -159,11 +159,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ObstacleJumping (2)
       objectReference: {fileID: 0}
-    - target: {fileID: -5751975105068993406, guid: 924df5547133f6442abd5a376df6adf9,
-        type: 3}
-      propertyPath: viewIdField
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 681458670020738482, guid: 924df5547133f6442abd5a376df6adf9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -217,6 +212,11 @@ PrefabInstance:
     - target: {fileID: 681458670020738482, guid: 924df5547133f6442abd5a376df6adf9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5751975105068993406, guid: 924df5547133f6442abd5a376df6adf9,
+        type: 3}
+      propertyPath: viewIdField
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -799,11 +799,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ObstacleJumping
       objectReference: {fileID: 0}
-    - target: {fileID: -5751975105068993406, guid: 924df5547133f6442abd5a376df6adf9,
-        type: 3}
-      propertyPath: viewIdField
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 681458670020738482, guid: 924df5547133f6442abd5a376df6adf9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -857,6 +852,11 @@ PrefabInstance:
     - target: {fileID: 681458670020738482, guid: 924df5547133f6442abd5a376df6adf9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5751975105068993406, guid: 924df5547133f6442abd5a376df6adf9,
+        type: 3}
+      propertyPath: viewIdField
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1119,11 +1119,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ObstacleJumping (3)
       objectReference: {fileID: 0}
-    - target: {fileID: -5751975105068993406, guid: 924df5547133f6442abd5a376df6adf9,
-        type: 3}
-      propertyPath: viewIdField
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 681458670020738482, guid: 924df5547133f6442abd5a376df6adf9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1179,6 +1174,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5751975105068993406, guid: 924df5547133f6442abd5a376df6adf9,
+        type: 3}
+      propertyPath: viewIdField
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 924df5547133f6442abd5a376df6adf9, type: 3}
 --- !u!4 &62916212013637849 stripped
@@ -1198,11 +1198,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ObstacleJumping (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: -5751975105068993406, guid: 924df5547133f6442abd5a376df6adf9,
-        type: 3}
-      propertyPath: viewIdField
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 681458670020738482, guid: 924df5547133f6442abd5a376df6adf9,
         type: 3}
@@ -1257,6 +1252,11 @@ PrefabInstance:
     - target: {fileID: 681458670020738482, guid: 924df5547133f6442abd5a376df6adf9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5751975105068993406, guid: 924df5547133f6442abd5a376df6adf9,
+        type: 3}
+      propertyPath: viewIdField
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

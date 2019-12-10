@@ -87,7 +87,7 @@ public class Player : MonoBehaviour
     {
         if (!_gameOver)
         {
-            scoreScript.dead = true;
+            scoreScript.gameOver();
             _gameOver = true;
             gameObject.GetComponent<Player>().enabled = false;
             GameObject.Find("Highway").GetComponent<Highway>().enabled = false;

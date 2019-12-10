@@ -82,7 +82,6 @@ public class JumpingController : MonoBehaviour
         {
             gameObject.GetComponent<JumpingController>().enabled = false;
             JumpingSpawnManager.SetActive(false);
-            scoreScript.dead = true;
             PhotonView photonView = PhotonView.Get(this);
             photonView.RPC("GameOver", RpcTarget.All, collision.gameObject.transform.position);
         }
@@ -94,6 +93,7 @@ public class JumpingController : MonoBehaviour
     {
         if (!_gameOver)
         {
+            scoreScript.dead = true;
             _gameOver = true;
             gameObject.GetComponent<JumpingController>().enabled = false;
             obstacles = GameObject.FindGameObjectsWithTag("Obstacle");

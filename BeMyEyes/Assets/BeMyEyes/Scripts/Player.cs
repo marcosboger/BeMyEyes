@@ -7,6 +7,8 @@ using Photon.Realtime;
 public class Player : MonoBehaviour
 {
     private Touch touch;
+    public GameObject ScoreManager;
+    ScoreManager scoreScript;
     private Vector2 _touchPosition;
     public Joystick joystick;
     private GameObject _player;
@@ -22,6 +24,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         _player = GameObject.Find("Player");
+        scoreScript = ScoreManager.GetComponent<ScoreManager>();
     }
 
     // Update is called once per frame
@@ -84,6 +87,7 @@ public class Player : MonoBehaviour
     {
         if (!_gameOver)
         {
+            scoreScript.dead = true;
             _gameOver = true;
             gameObject.GetComponent<Player>().enabled = false;
             GameObject.Find("Highway").GetComponent<Highway>().enabled = false;

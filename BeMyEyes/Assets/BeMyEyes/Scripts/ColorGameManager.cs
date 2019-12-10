@@ -24,6 +24,8 @@ public class ColorGameManager : MonoBehaviour
     private int _random;
     private bool podepa = false;
     private int random;
+    public Text ScoreText;
+    private int score = 0;
 
     Color orange = new Color(1, 0.738f, 0.4392f, 1);
     Color pink = new Color(1, 0.4386f, 0.9068f, 1);
@@ -179,9 +181,11 @@ public class ColorGameManager : MonoBehaviour
         {
             for(int j = 0; j < 7; j++)
             {
-                if (myColors[0] == yourColors[j]);
-                PhotonView photonView = PhotonView.Get(this);
-                photonView.RPC("buttonPress"+j, RpcTarget.Others, null); 
+                if (myColors[0] == yourColors[j])
+                {
+                    PhotonView photonView = PhotonView.Get(this);
+                    photonView.RPC("buttonPress" + j, RpcTarget.Others, null);
+                }
             }
         }
         else {
@@ -189,6 +193,8 @@ public class ColorGameManager : MonoBehaviour
             {
                 enableTimers[0] = false;
                 buttons[0].transform.Find("Light").GetComponent<Image>().color = Color.white;
+                score += 1;
+                ScoreText.text = "Score: " + score;
             }
             else
             {
@@ -204,9 +210,11 @@ public class ColorGameManager : MonoBehaviour
         {
             for (int j = 0; j < 7; j++)
             {
-                if (myColors[1] == yourColors[j]) ;
-                PhotonView photonView = PhotonView.Get(this);
-                photonView.RPC("buttonPress" + j, RpcTarget.Others, null);
+                if (myColors[1] == yourColors[j])
+                {
+                    PhotonView photonView = PhotonView.Get(this);
+                    photonView.RPC("buttonPress" + j, RpcTarget.Others, null);
+                }
             }
         }
         else
@@ -215,6 +223,8 @@ public class ColorGameManager : MonoBehaviour
             {
                 enableTimers[1] = false;
                 buttons[1].transform.Find("Light").GetComponent<Image>().color = Color.white;
+                score += 1;
+                ScoreText.text = "Score: " + score;
             }
             else
             {
@@ -230,9 +240,11 @@ public class ColorGameManager : MonoBehaviour
         {
             for (int j = 0; j < 7; j++)
             {
-                if (myColors[2] == yourColors[j]) ;
-                PhotonView photonView = PhotonView.Get(this);
-                photonView.RPC("buttonPress" + j, RpcTarget.Others, null);
+                if (myColors[2] == yourColors[j])
+                {
+                    PhotonView photonView = PhotonView.Get(this);
+                    photonView.RPC("buttonPress" + j, RpcTarget.Others, null);
+                }
             }
         }
         else
@@ -241,6 +253,8 @@ public class ColorGameManager : MonoBehaviour
             {
                 enableTimers[2] = false;
                 buttons[2].transform.Find("Light").GetComponent<Image>().color = Color.white;
+                score += 1;
+                ScoreText.text = "Score: " + score;
             }
             else
             {
@@ -256,9 +270,11 @@ public class ColorGameManager : MonoBehaviour
         {
             for (int j = 0; j < 7; j++)
             {
-                if (myColors[3] == yourColors[j]) ;
-                PhotonView photonView = PhotonView.Get(this);
-                photonView.RPC("buttonPress" + j, RpcTarget.Others, null);
+                if (myColors[3] == yourColors[j])
+                {
+                    PhotonView photonView = PhotonView.Get(this);
+                    photonView.RPC("buttonPress" + j, RpcTarget.Others, null);
+                }
             }
         }
         else
@@ -267,6 +283,8 @@ public class ColorGameManager : MonoBehaviour
             {
                 enableTimers[3] = false;
                 buttons[3].transform.Find("Light").GetComponent<Image>().color = Color.white;
+                score += 1;
+                ScoreText.text = "Score: " + score;
             }
             else
             {
@@ -282,9 +300,11 @@ public class ColorGameManager : MonoBehaviour
         {
             for (int j = 0; j < 7; j++)
             {
-                if (myColors[4] == yourColors[j]) ;
-                PhotonView photonView = PhotonView.Get(this);
-                photonView.RPC("buttonPress" + j, RpcTarget.Others, null);
+                if (myColors[4] == yourColors[j])
+                {
+                    PhotonView photonView = PhotonView.Get(this);
+                    photonView.RPC("buttonPress" + j, RpcTarget.Others, null);
+                }
             }
         }
         else
@@ -293,6 +313,8 @@ public class ColorGameManager : MonoBehaviour
             {
                 enableTimers[4] = false;
                 buttons[4].transform.Find("Light").GetComponent<Image>().color = Color.white;
+                score += 1;
+                ScoreText.text = "Score: " + score;
             }
             else
             {
@@ -308,9 +330,11 @@ public class ColorGameManager : MonoBehaviour
         {
             for (int j = 0; j < 7; j++)
             {
-                if (myColors[5] == yourColors[j]) ;
-                PhotonView photonView = PhotonView.Get(this);
-                photonView.RPC("buttonPress" + j, RpcTarget.Others, null);
+                if (myColors[5] == yourColors[j])
+                {
+                    PhotonView photonView = PhotonView.Get(this);
+                    photonView.RPC("buttonPress" + j, RpcTarget.Others, null);
+                }
             }
         }
         else
@@ -319,6 +343,8 @@ public class ColorGameManager : MonoBehaviour
             {
                 enableTimers[5] = false;
                 buttons[5].transform.Find("Light").GetComponent<Image>().color = Color.white;
+                score += 1;
+                ScoreText.text = "Score: " + score;
             }
             else
             {
@@ -334,9 +360,11 @@ public class ColorGameManager : MonoBehaviour
         {
             for (int j = 0; j < 7; j++)
             {
-                if (myColors[6] == yourColors[j]) ;
-                PhotonView photonView = PhotonView.Get(this);
-                photonView.RPC("buttonPress" + j, RpcTarget.Others, null);
+                if (myColors[6] == yourColors[j])
+                {
+                    PhotonView photonView = PhotonView.Get(this);
+                    photonView.RPC("buttonPress" + j, RpcTarget.Others, null);
+                }
             }
         }
         else
@@ -345,6 +373,8 @@ public class ColorGameManager : MonoBehaviour
             {
                 enableTimers[6] = false;
                 buttons[6].transform.Find("Light").GetComponent<Image>().color = Color.white;
+                score += 1;
+                ScoreText.text = "Score: " + score;
             }
             else
             {

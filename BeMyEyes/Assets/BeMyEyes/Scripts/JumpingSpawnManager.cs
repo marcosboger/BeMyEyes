@@ -9,6 +9,7 @@ public class JumpingSpawnManager : MonoBehaviour
     private float timer = 0;
     private float waitTime = -1;
     private bool _gameOver = false;
+    private float multiplier = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -25,10 +26,12 @@ public class JumpingSpawnManager : MonoBehaviour
         }
         else
         {
-            timer += Time.deltaTime;
+            timer += multiplier*Time.deltaTime;
             if (timer >= waitTime)
             {
                 _random = Random.Range(0, 5);
+                if (multiplier <= 1.5f)
+                    multiplier += 0.02f;
                 if (_random == 0)
                 {
                     PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(3.07f, -3.48f, 0), Quaternion.identity);

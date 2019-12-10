@@ -21,7 +21,7 @@ public class ColorGameManager : MonoBehaviour
     private GameObject text;
     private GameObject buttonsUI;
     private float waitTime = 2f;
-    private float waiting = 0f;
+    private float waiting = 1.5f;
     private int _random;
     private bool podepa = false;
     private int random;

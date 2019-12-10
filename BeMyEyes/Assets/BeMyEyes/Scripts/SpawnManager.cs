@@ -9,14 +9,14 @@ public class SpawnManager : MonoBehaviour
     public GameObject obstacle;
     private float _x;
     private float timer = 0;
-    private float waitTime = 0.5f;
+    private float waitTime = 1.75f;
     private bool _gameOver = false;
     private float multiplier = 1f;
     private void Start()
     {
     }
 
-    void Spawn()
+    void Update()
     {
         if (_gameOver)
         {
@@ -27,10 +27,9 @@ public class SpawnManager : MonoBehaviour
             timer += multiplier*Time.deltaTime;
             if (timer >= waitTime)
             {
-                if(multiplier <= 1.5)
+                if(multiplier <= 1.26)
                     multiplier += 0.02f;
                 _x = Random.Range(0, 6);
-                timer = 0;
                 if (_x == 0)
                 {
                     PhotonNetwork.Instantiate("Obstacle", new Vector3(3, 5.7f, 0), Quaternion.identity);
@@ -58,6 +57,7 @@ public class SpawnManager : MonoBehaviour
                     PhotonNetwork.Instantiate("Obstacle", new Vector3(4.41f, 5.7f, 0), Quaternion.identity);
                     PhotonNetwork.Instantiate("Obstacle", new Vector3(1.59f, 5.7f, 0), Quaternion.identity);
                 }
+                timer = 0;
             }
         }
     }

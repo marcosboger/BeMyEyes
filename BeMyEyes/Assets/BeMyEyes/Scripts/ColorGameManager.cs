@@ -27,8 +27,9 @@ public class ColorGameManager : MonoBehaviour
     private int random;
     public Text ScoreText;
     private int score = 0;
+    private int blinkingLights = 0;
 
-    Color orange = new Color(1, 0.738f, 0.4392f, 1);
+    Color orange = new Color(1, 0.4541185f, 0, 1);
     Color pink = new Color(1, 0.4386f, 0.9068f, 1);
     Color purple = new Color(0.492f, 0, 1, 1);
     // Start is called before the first frame update
@@ -101,18 +102,19 @@ public class ColorGameManager : MonoBehaviour
         if (!PhotonNetwork.IsMasterClient)
         {
             waiting += Time.deltaTime;
-            if (waiting >= waitTime)
+            if (waiting >= waitTime && blinkingLights < 3)
             {
                 _random = Random.Range(0, 7);
                 if (!enableTimers[_random])
                 {
+                    blinkingLights++;
                     enableTimers[_random] = true;
-                    if (waitTime > 0.8f)
+                    if (waitTime > 1f)
                         waitTime -= 0.1f;
                     waiting = 0;
                     timers[_random] = 0;
                     blinkers[_random] = 0;
-                    blinkWait[_random] = 0.6f;
+                    blinkWait[_random] = 0.5f;
                 }
             }
             #region TimeManagers
@@ -161,14 +163,14 @@ public class ColorGameManager : MonoBehaviour
             else if (buttons[j].transform.Find("Light").GetComponent<Image>().color == Color.red)
             {
                 buttons[j].transform.Find("Light").GetComponent<Image>().color = Color.white;
-                if (blinkWait[j] > 0.2f)
+                if (blinkWait[j] > 0.17f)
                 {
-                    blinkWait[j] -= 0.05f;
+                    blinkWait[j] -= 0.1f;
                 }
             }
             blinkers[j] = 0;
         }
-        if(timers[j] > 10.0f)
+        if(timers[j] > 5.0f)
         {
             PhotonView photonView = PhotonView.Get(this);
             photonView.RPC("gameOver", RpcTarget.All, null);
@@ -180,6 +182,10 @@ public class ColorGameManager : MonoBehaviour
     {
         buttonsUI.SetActive(false);
         text.SetActive(true);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            RestartManager.gameOver();
+        }
     }
     #region ButtonPresses
     [PunRPC]
@@ -201,8 +207,9 @@ public class ColorGameManager : MonoBehaviour
             {
                 enableTimers[0] = false;
                 buttons[0].transform.Find("Light").GetComponent<Image>().color = Color.white;
-                score += 1;
-                ScoreText.text = "Score: " + score;
+                blinkingLights--;
+                PhotonView photonView = PhotonView.Get(this);
+                photonView.RPC("addScore", RpcTarget.All, null);
             }
             else
             {
@@ -231,8 +238,9 @@ public class ColorGameManager : MonoBehaviour
             {
                 enableTimers[1] = false;
                 buttons[1].transform.Find("Light").GetComponent<Image>().color = Color.white;
-                score += 1;
-                ScoreText.text = "Score: " + score;
+                blinkingLights--;
+                PhotonView photonView = PhotonView.Get(this);
+                photonView.RPC("addScore", RpcTarget.All, null);
             }
             else
             {
@@ -261,8 +269,9 @@ public class ColorGameManager : MonoBehaviour
             {
                 enableTimers[2] = false;
                 buttons[2].transform.Find("Light").GetComponent<Image>().color = Color.white;
-                score += 1;
-                ScoreText.text = "Score: " + score;
+                blinkingLights--;
+                PhotonView photonView = PhotonView.Get(this);
+                photonView.RPC("addScore", RpcTarget.All, null);
             }
             else
             {
@@ -291,8 +300,9 @@ public class ColorGameManager : MonoBehaviour
             {
                 enableTimers[3] = false;
                 buttons[3].transform.Find("Light").GetComponent<Image>().color = Color.white;
-                score += 1;
-                ScoreText.text = "Score: " + score;
+                blinkingLights--;
+                PhotonView photonView = PhotonView.Get(this);
+                photonView.RPC("addScore", RpcTarget.All, null);
             }
             else
             {
@@ -321,8 +331,9 @@ public class ColorGameManager : MonoBehaviour
             {
                 enableTimers[4] = false;
                 buttons[4].transform.Find("Light").GetComponent<Image>().color = Color.white;
-                score += 1;
-                ScoreText.text = "Score: " + score;
+                blinkingLights--;
+                PhotonView photonView = PhotonView.Get(this);
+                photonView.RPC("addScore", RpcTarget.All, null);
             }
             else
             {
@@ -351,8 +362,9 @@ public class ColorGameManager : MonoBehaviour
             {
                 enableTimers[5] = false;
                 buttons[5].transform.Find("Light").GetComponent<Image>().color = Color.white;
-                score += 1;
-                ScoreText.text = "Score: " + score;
+                blinkingLights--;
+                PhotonView photonView = PhotonView.Get(this);
+                photonView.RPC("addScore", RpcTarget.All, null);
             }
             else
             {
@@ -381,8 +393,9 @@ public class ColorGameManager : MonoBehaviour
             {
                 enableTimers[6] = false;
                 buttons[6].transform.Find("Light").GetComponent<Image>().color = Color.white;
-                score += 1;
-                ScoreText.text = "Score: " + score;
+                blinkingLights--;
+                PhotonView photonView = PhotonView.Get(this);
+                photonView.RPC("addScore", RpcTarget.All, null);
             }
             else
             {
@@ -391,12 +404,18 @@ public class ColorGameManager : MonoBehaviour
             }
         }
     }
+
+
+    #endregion
     [PunRPC]
     void colorPass(string[] passedColors)
     {
         yourColors = passedColors;
     }
-
-    #endregion
-
+    [PunRPC]
+    void addScore()
+    {
+        score += 1;
+        ScoreText.text = "Score: " + score;
+    }
 }

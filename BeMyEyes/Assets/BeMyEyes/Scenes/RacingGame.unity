@@ -1159,7 +1159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44b12903f8b8f844b3827f87914eda9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScoreManager: {fileID: 0}
+  ScoreManager: {fileID: 1123878969}
   joystick: {fileID: 0}
   speed: 7.5
   gameOver: {fileID: 484663475}

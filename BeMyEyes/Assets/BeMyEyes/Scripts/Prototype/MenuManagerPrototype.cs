@@ -18,7 +18,9 @@ public class MenuManagerPrototype : MonoBehaviourPunCallbacks
     private GameObject _jumpingGame;
     private GameObject _colourGame;
     private GameObject _gameSelector;
+    private GameObject _highScore;
 
+    private Text _highScoreValue;
     private Button _startButton;
 
     private string _gameSelected;
@@ -37,8 +39,12 @@ public class MenuManagerPrototype : MonoBehaviourPunCallbacks
         _jumpingGame = GameObject.Find("JumpingGame");
         _colourGame = GameObject.Find("ColourGame");
         _gameSelector = GameObject.Find("Game Selector");
+        _highScore = GameObject.Find("HighScore");
 
+
+        _highScoreValue = GameObject.Find("HighScore Value").GetComponent<Text>();
         _startButton = GameObject.Find("Start").GetComponent<Button>();
+        
 
         if (!PhotonNetwork.IsConnected)
         {
@@ -57,7 +63,9 @@ public class MenuManagerPrototype : MonoBehaviourPunCallbacks
         _racingGame.SetActive(false);
         _jumpingGame.SetActive(false);
         _colourGame.SetActive(false);
+        _highScore.SetActive(false);
         _startButton.interactable = false;
+
 
         if (PhotonNetwork.InRoom)
         {
@@ -67,9 +75,21 @@ public class MenuManagerPrototype : MonoBehaviourPunCallbacks
                 _background.SetActive(true);
                 _playerGameSelection.SetActive(true);
                 _gameSelector.SetActive(true);
-                _racingGame.SetActive(true);
-                _gameSelected = "RacingGame";
-                if(PhotonNetwork.PlayerList.Length == 2)
+                _gameSelected = GeneralManager.Instance.gamePlayed;
+                if (_gameSelected == "RacingGame")
+                    _racingGame.SetActive(true);
+                if (_gameSelected == "JumpingGame")
+                    _jumpingGame.SetActive(true);
+                if (_gameSelected == "ColourGame")
+                    _colourGame.SetActive(true);
+                _highScore.SetActive(true);
+                if (_gameSelected == "RacingGame")
+                    _highScoreValue.text = GeneralManager.Instance.racingGameHighScore.ToString();
+                if (_gameSelected == "JumpingGame")
+                    _highScoreValue.text = GeneralManager.Instance.jumpingGameHighScore.ToString();
+                if (_gameSelected == "ColourGame")
+                    _highScoreValue.text = GeneralManager.Instance.colourGameHighScore.ToString();
+                if (PhotonNetwork.PlayerList.Length == 2)
                 {
                     _player2.SetActive(true);
                     _cindyBeMyEyes.SetActive(true);
@@ -101,6 +121,8 @@ public class MenuManagerPrototype : MonoBehaviourPunCallbacks
         _gameSelector.SetActive(true);
         _racingGame.SetActive(true);
         _gameSelected = "RacingGame";
+        _highScore.SetActive(true);
+        _highScoreValue.text = GeneralManager.Instance.racingGameHighScore.ToString();
     }
 
     public void handleClickJoinRoom()
@@ -128,18 +150,24 @@ public class MenuManagerPrototype : MonoBehaviourPunCallbacks
             _racingGame.SetActive(false);
             _colourGame.SetActive(true);
             _gameSelected = "ColourGame";
+            GeneralManager.Instance.gamePlayed = "ColourGame";
+            _highScoreValue.text = GeneralManager.Instance.colourGameHighScore.ToString();
         }
         else if (_gameSelected == "JumpingGame")
         {
             _jumpingGame.SetActive(false);
             _racingGame.SetActive(true);
             _gameSelected = "RacingGame";
+            GeneralManager.Instance.gamePlayed = "RacingGame";
+            _highScoreValue.text = GeneralManager.Instance.racingGameHighScore.ToString();
         }
         else if (_gameSelected == "ColourGame")
         {
             _colourGame.SetActive(false);
             _jumpingGame.SetActive(true);
             _gameSelected = "JumpingGame";
+            GeneralManager.Instance.gamePlayed = "JumpingGame";
+            _highScoreValue.text = GeneralManager.Instance.jumpingGameHighScore.ToString();
         }
     }
 
@@ -151,18 +179,24 @@ public class MenuManagerPrototype : MonoBehaviourPunCallbacks
             _racingGame.SetActive(false);
             _jumpingGame.SetActive(true);
             _gameSelected = "JumpingGame";
+            GeneralManager.Instance.gamePlayed = "JumpingGame";
+            _highScoreValue.text = GeneralManager.Instance.jumpingGameHighScore.ToString();
         }
         else if (_gameSelected == "JumpingGame")
         {
             _jumpingGame.SetActive(false);
             _colourGame.SetActive(true);
             _gameSelected = "ColourGame";
+            GeneralManager.Instance.gamePlayed = "ColourGame";
+            _highScoreValue.text = GeneralManager.Instance.colourGameHighScore.ToString();
         }
         else if (_gameSelected == "ColourGame")
         {
             _colourGame.SetActive(false);
             _racingGame.SetActive(true);
             _gameSelected = "RacingGame";
+            GeneralManager.Instance.gamePlayed = "RacingGame";
+            _highScoreValue.text = GeneralManager.Instance.racingGameHighScore.ToString();
         }
     }
 

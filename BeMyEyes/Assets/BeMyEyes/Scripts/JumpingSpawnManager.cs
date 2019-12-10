@@ -29,7 +29,7 @@ public class JumpingSpawnManager : MonoBehaviour
             timer += multiplier*Time.deltaTime;
             if (timer >= waitTime)
             {
-                _random = Random.Range(0, 6);
+                _random = Random.Range(0, 9);
                 if (multiplier <= 1.5f)
                     multiplier += 0.02f;
                 if (_random == 0)
@@ -118,12 +118,27 @@ public class JumpingSpawnManager : MonoBehaviour
                     PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(13.85f, -3.48f, 0), Quaternion.identity);
                     waitTime = 6.4f * multiplier;
                 }
-                if(_random == 5)
+                if (_random == 5)
+                {
+                    PhotonNetwork.Instantiate("ObstacleJumping3", new Vector3(0, 0, 0), Quaternion.identity);
+                    waitTime = 2.5f * multiplier + 1.5f;
+                }
+                if (_random == 6)
+                {
+                    PhotonNetwork.Instantiate("ObstacleJumping2", new Vector3(0, 0, 0), Quaternion.identity);
+                    waitTime = 2.5f * multiplier + 1.5f;
+                }
+                if (_random == 7)
                 {
                     PhotonNetwork.Instantiate("ObstacleJumping1", new Vector3(0, 0, 0), Quaternion.identity);
-                    waitTime = 2.5f*multiplier + 1.5f;
+                    waitTime = 3f;
                 }
-                timer = 0;
+                if (_random == 8)
+                {
+                    PhotonNetwork.Instantiate("ObstacleJumping4", new Vector3(0, 0, 0), Quaternion.identity);
+                    waitTime = 2.5f * multiplier + 1.5f;
+                }
+                    timer = 0;
             }
         }
     }

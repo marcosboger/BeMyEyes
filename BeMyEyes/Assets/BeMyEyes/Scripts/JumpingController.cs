@@ -21,6 +21,7 @@ public class JumpingController : MonoBehaviour
     private GameObject restart;
 
     private GameObject[] obstacles;
+    private GameObject[] platforms;
     private bool _gameOver = false;
     // Start is called before the first frame update
     void Start()
@@ -97,6 +98,7 @@ public class JumpingController : MonoBehaviour
             _gameOver = true;
             gameObject.GetComponent<JumpingController>().enabled = false;
             obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
+            platforms = GameObject.FindGameObjectsWithTag("Platform");
             if (!PhotonNetwork.IsMasterClient)
             {
                 GameObject.Find("JumpingSpawnManager").GetComponent<JumpingSpawnManager>().gameOver();
@@ -104,6 +106,10 @@ public class JumpingController : MonoBehaviour
             foreach (GameObject o in obstacles)
             {
                 o.GetComponent<platform>().enabled = false;
+            }
+            foreach (GameObject p in platforms)
+            {
+                p.GetComponent<platform>().enabled = false;
             }
             if (PhotonNetwork.IsMasterClient)
             {

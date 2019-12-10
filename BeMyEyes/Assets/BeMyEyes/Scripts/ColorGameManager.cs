@@ -11,8 +11,9 @@ public class ColorGameManager : MonoBehaviour
     private List<float> blinkers = new List<float>();
     private List<bool> enableTimers = new List<bool>();
     public List<Color> colors = new List<Color>();
-    private List<Color> myColors = new List<Color>();
-    private List<Color> yourColors = new List<Color>();
+    private string[] colorNames = new string[7];
+    private string[] myColors = new string[7];
+    private string[] yourColors = new string[7];
     public List<Button> buttons = new List<Button>();
     public List<float> blinkWait = new List<float>();
     private List<int> usedcolors = new List<int>();
@@ -36,6 +37,13 @@ public class ColorGameManager : MonoBehaviour
         buttonsUI = GameObject.Find("Buttons");
         text = GameObject.Find("GameOverText");
         text.SetActive(false);
+        colorNames[0] = "blue";
+        colorNames[1] = "green";
+        colorNames[2] = "orange";
+        colorNames[3] = "pink";
+        colorNames[4] = "purple";
+        colorNames[5] = "red";
+        colorNames[6] = "yellow";
         colors.Add(Color.blue);
         colors.Add(Color.green);
         colors.Add(orange);
@@ -64,7 +72,7 @@ public class ColorGameManager : MonoBehaviour
             enableTimers.Add(false);
             blinkWait.Add(0.5f);
             buttons[i].GetComponent<Image>().color = colors[random];
-            myColors.Add(colors[random]);
+            myColors[i] = colorNames[random];
             if (!PhotonNetwork.IsMasterClient)
             {
                 buttons[i].interactable = false;
@@ -384,7 +392,7 @@ public class ColorGameManager : MonoBehaviour
         }
     }
     [PunRPC]
-    void colorPass(List<Color> passedColors)
+    void colorPass(string[] passedColors)
     {
         yourColors = passedColors;
     }

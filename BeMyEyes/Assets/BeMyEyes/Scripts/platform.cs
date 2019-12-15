@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class platform : MonoBehaviour
 {
-    private float speed = 3.0f;
+    public float speed = 3.0f;
     public bool see = false;
 
     // Start is called before the first frame update

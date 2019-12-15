@@ -36,10 +36,6 @@ public class JumpingController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.GetComponent<PhotonView>().IsMine == false && PhotonNetwork.IsConnected == true)
-        {
-            return;
-        }
         if (transform.position.x <= -1.72)
         {
             transform.position = new Vector3(-1.72f, transform.position.y, transform.position.z);
@@ -61,20 +57,16 @@ public class JumpingController : MonoBehaviour
             transform.Rotate(0, 0, -1 * _rotSpeed * Time.deltaTime);
         }
         //Control by touching
-        if ( ( (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) || Input.GetMouseButtonDown(0) ) && _grounded)
+        if (((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) || Input.GetMouseButtonDown(0)) && _grounded && (PhotonNetwork.IsMasterClient))
         {
-            rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Force);
+            PhotonView photonView = PhotonView.Get(this);
+            photonView.RPC("Jump", RpcTarget.All, null);
         }
-
-
-
-        
-
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Platform" && PhotonNetwork.IsMasterClient)
+        if (collision.gameObject.tag == "Platform" && PhotonNetwork.IsMasterClient)
         {
             collision.gameObject.GetComponent<SpriteRenderer>().enabled = true;
             collision.gameObject.GetComponent<platform>().see = true;
@@ -84,10 +76,15 @@ public class JumpingController : MonoBehaviour
             gameObject.GetComponent<JumpingController>().enabled = false;
             JumpingSpawnManager.SetActive(false);
             PhotonView photonView = PhotonView.Get(this);
-            photonView.RPC("GameOver", RpcTarget.All, collision.gameObject.transform.position);
+            photonView.RPC("GameOver", RpcTarget.All, gameObject.transform.position);
         }
     }
 
+    [PunRPC]
+    void Jump()
+    {
+        rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Force);
+    }
 
     [PunRPC]
     void GameOver(Vector3 position)
@@ -102,14 +99,17 @@ public class JumpingController : MonoBehaviour
             if (!PhotonNetwork.IsMasterClient)
             {
                 GameObject.Find("JumpingSpawnManager").GetComponent<JumpingSpawnManager>().gameOver();
+                gameObject.transform.position = position;
             }
             foreach (GameObject o in obstacles)
             {
-                o.GetComponent<platform>().enabled = false;
+                o.GetComponent<platform>().speed = 0;
+                o.GetComponent<platform>().see = true;
             }
             foreach (GameObject p in platforms)
             {
-                p.GetComponent<platform>().enabled = false;
+                p.GetComponent<platform>().speed = 0;
+                p.GetComponent<platform>().see = true;
             }
             if (PhotonNetwork.IsMasterClient)
             {

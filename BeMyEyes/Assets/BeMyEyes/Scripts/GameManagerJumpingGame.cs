@@ -27,10 +27,6 @@ namespace Com.BeMyEyes.JumpingGame
                     Debug.Log("Control Taken!");
                     spawnManager.SetActive(false);
                 }
-                else if(PhotonNetwork.IsConnected)
-                {
-                    _player.GetComponent<Rigidbody2D>().simulated = false;
-                }
             }
         }
 
@@ -42,7 +38,7 @@ namespace Com.BeMyEyes.JumpingGame
                 obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
                 foreach (GameObject o in obstacles)
                 {
-                    if (o.transform.position.x <= -1.5)
+                    if (o.transform.position.x <= -1.5 || o.GetComponent<platform>().see)
                     {
                         o.GetComponent<platform>().see = true;
                         o.GetComponent<SpriteRenderer>().enabled = true;
@@ -55,7 +51,7 @@ namespace Com.BeMyEyes.JumpingGame
                 }
                 foreach (GameObject p in platforms)
                 {
-                    if (p.transform.position.x <= -1.5)
+                    if (p.transform.position.x <= -1.5 || p.GetComponent<platform>().see)
                     {
                         p.GetComponent<platform>().see = true;
                         p.GetComponent<SpriteRenderer>().enabled = true;

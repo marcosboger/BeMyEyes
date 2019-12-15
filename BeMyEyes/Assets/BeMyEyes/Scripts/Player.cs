@@ -98,8 +98,8 @@ public class Player : MonoBehaviour
             }
             foreach (GameObject o in obstacles)
             {
-                o.transform.position = position;
-                o.GetComponent<Obstacle>().enabled = false;
+                o.GetComponent<Obstacle>().see = true;
+                o.GetComponent<Obstacle>().speed = 0;
             }
             gameOver.SetActive(true);
             if (PhotonNetwork.IsMasterClient)

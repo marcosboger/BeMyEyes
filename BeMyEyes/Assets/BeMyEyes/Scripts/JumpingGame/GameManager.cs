@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 namespace Com.BeMyEyes.JumpingGame
 {
-    public class GameManagerJumpingGame : MonoBehaviour
+    public class GameManager : MonoBehaviour
     {
         private bool _ownership = false;
         private GameObject[] obstacles;
@@ -25,7 +25,7 @@ namespace Com.BeMyEyes.JumpingGame
                 {
                     _player.RequestOwnership();
                     Debug.Log("Control Taken!");
-                    spawnManager.SetActive(false);
+                    //spawnManager.SetActive(false);
                 }
             }
         }
@@ -38,12 +38,12 @@ namespace Com.BeMyEyes.JumpingGame
                 obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
                 foreach (GameObject o in obstacles)
                 {
-                    if (o.transform.position.x <= -1.5 || o.GetComponent<platform>().see)
+                    if (o.transform.position.x <= -1.5 || o.GetComponent<Platform>().see)
                     {
-                        o.GetComponent<platform>().see = true;
+                        o.GetComponent<Platform>().see = true;
                         o.GetComponent<SpriteRenderer>().enabled = true;
                     }
-                    else if (!o.GetComponent<platform>().see)
+                    else if (!o.GetComponent<Platform>().see)
                     {
                         o.GetComponent<SpriteRenderer>().enabled = false;
                     }
@@ -51,12 +51,12 @@ namespace Com.BeMyEyes.JumpingGame
                 }
                 foreach (GameObject p in platforms)
                 {
-                    if (p.transform.position.x <= -1.5 || p.GetComponent<platform>().see)
+                    if (p.transform.position.x <= -1.5 || p.GetComponent<Platform>().see)
                     {
-                        p.GetComponent<platform>().see = true;
+                        p.GetComponent<Platform>().see = true;
                         p.GetComponent<SpriteRenderer>().enabled = true;
                     }
-                    else if (!p.GetComponent<platform>().see)
+                    else if (!p.GetComponent<Platform>().see)
                     {
                         p.GetComponent<SpriteRenderer>().enabled = false;
                     }

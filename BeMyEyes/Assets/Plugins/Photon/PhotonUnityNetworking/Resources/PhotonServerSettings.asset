@@ -47,5 +47,16 @@ MonoBehaviour:
   - addScore
   - Jump
   - UpdatePosition
+  - gameSelect
+  - setGame
+  - Spawn1
+  - Spawn2
+  - Spawn3
+  - Spawn4
+  - Spawn5
+  - Spawn6
+  - Spawn7
+  - Spawn8
+  - Spawn9
   DisableAutoOpenWizard: 1
   ShowSettings: 1

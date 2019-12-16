@@ -420,6 +420,8 @@ GameObject:
   m_Component:
   - component: {fileID: 477455132}
   - component: {fileID: 477455131}
+  - component: {fileID: 477455134}
+  - component: {fileID: 477455133}
   m_Layer: 0
   m_Name: JumpingSpawnManager
   m_TagString: Untagged
@@ -439,6 +441,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3dc583af29b6714bacb0050eaadf724, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obstacleJumping: {fileID: 681458670020738480, guid: 924df5547133f6442abd5a376df6adf9,
+    type: 3}
+  platform: {fileID: 8458812476114260043, guid: f30d7aad2c74e1a49bb954e9012bf1c9,
+    type: 3}
+  obstacleJumping1: {fileID: 696513105987296757, guid: c1ccabd8dfdb4ab4e816f333671803f1,
+    type: 3}
+  obstacleJumping2: {fileID: 696513105987296757, guid: 8e2f1a32fc4ab6146948f5defe7fbb29,
+    type: 3}
+  obstacleJumping3: {fileID: 696513105987296757, guid: f2aafd42273eea3439bf931978910cbe,
+    type: 3}
+  obstacleJumping4: {fileID: 696513105987296757, guid: 0ce70e73186218944b1cccf4b1b74a03,
+    type: 3}
 --- !u!4 &477455132
 Transform:
   m_ObjectHideFlags: 0
@@ -453,6 +467,43 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &477455133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477455130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 0
+  m_SynchronizeRotation: 0
+  m_SynchronizeScale: 0
+--- !u!114 &477455134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477455130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 477455133}
+  viewIdField: 2
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &510471329
 GameObject:
   m_ObjectHideFlags: 0

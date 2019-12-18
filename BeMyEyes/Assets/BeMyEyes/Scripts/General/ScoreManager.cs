@@ -41,7 +41,10 @@ public class ScoreManager : MonoBehaviour
        
         if (GeneralManager.Instance.gamePlayed == "Jumping Game")
             GeneralManager.Instance.setJumpingHighScore(score);
-        
+
+        if (GeneralManager.Instance.gamePlayed == "Shooting Game")
+            GeneralManager.Instance.setShootingHighScore(score);
+
         dead = true;
     }
 }

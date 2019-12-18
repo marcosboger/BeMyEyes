@@ -12,6 +12,8 @@ namespace Com.BeMyEyes.RacingGame
         public GameObject ScoreManager;
         ScoreManager scoreScript;
         private Vector2 _touchPosition;
+        private Vector2 touchInitialPosition, touchPosition;
+        private float deltaX;
         public Joystick joystick;
         private GameObject _player;
         private Vector2 _playerPosition;
@@ -40,7 +42,7 @@ namespace Com.BeMyEyes.RacingGame
             //Control by touching
             if (Input.touchCount > 0)
             {
-                touch = Input.GetTouch(0);
+                /*touch = Input.GetTouch(0);
                 _touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
                 _xMatch = (_touchPosition.x <= _playerPosition.x + 0.45f && _touchPosition.x >= _playerPosition.x - 0.45f);
                 _yMatch = (_touchPosition.y <= _playerPosition.y + 0.5f && _touchPosition.y >= _playerPosition.y - 0.95f);
@@ -56,6 +58,27 @@ namespace Com.BeMyEyes.RacingGame
                     }
                     transform.position = new Vector3(_touchPosition.x, transform.position.y, transform.position.z);
                 }
+                */
+                touch = Input.GetTouch(0);
+                if (touch.phase == TouchPhase.Began)
+                {
+                    touchInitialPosition = Camera.main.ScreenToWorldPoint(touch.position);
+                }
+                touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
+                deltaX = touchPosition.x - touchInitialPosition.x;
+                if (transform.position.x + deltaX > 4.41)
+                {
+                    transform.position = new Vector3(4.41f, transform.position.y, transform.position.z);
+                }
+                else if (transform.position.x + deltaX < 1.59)
+                {
+                    transform.position = new Vector3(1.59f, transform.position.y, transform.position.z);
+                }
+                else
+                {
+                    transform.position = new Vector3(transform.position.x + deltaX, transform.position.y, transform.position.z);
+                }
+                touchInitialPosition = touchPosition;
             }
 
             //Control by joystick

@@ -9,6 +9,9 @@ TagManager:
   - Light
   - Enemy
   - Bullet
+  - Blue
+  - Green
+  - Pink
   layers:
   - Default
   - TransparentFX

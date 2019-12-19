@@ -16,7 +16,11 @@ namespace Com.BeMyEyes.ShootingGame
         [SerializeField]
         private GameObject ScoreManager;
         [SerializeField]
-        private GameObject bullet;
+        private GameObject bulletBlue;
+        [SerializeField]
+        private GameObject bulletPink;
+        [SerializeField]
+        private GameObject bulletGreen;
 
         private GameObject _player;
         private GameObject shootingPosition;
@@ -28,6 +32,8 @@ namespace Com.BeMyEyes.ShootingGame
         private Vector2 touchPosition;
 
         private bool _shoot = true;
+
+        private int bullet = 0;
 
         // Start is called before the first frame update
         void Start()
@@ -42,6 +48,7 @@ namespace Com.BeMyEyes.ShootingGame
         {
             Move();
             Shoot();
+            changeBullet();
         }
 
         public void Move()
@@ -88,8 +95,64 @@ namespace Com.BeMyEyes.ShootingGame
         IEnumerator shooting()
         {
             yield return new WaitForSeconds(cooldown);
-            Instantiate(bullet, shootingPosition.transform.position, Quaternion.identity);
+            if (bullet == 0)
+                Instantiate(bulletBlue, shootingPosition.transform.position, Quaternion.identity);
+            if (bullet == 1)
+                Instantiate(bulletPink, shootingPosition.transform.position, Quaternion.identity);
+            if (bullet == 2)
+                Instantiate(bulletGreen, shootingPosition.transform.position, Quaternion.identity);
             _shoot = true;
+        }
+
+        public void changeBullet()
+        {
+            bool _change = IsDoubleTap();
+            if (_change && bullet == 0)
+                bullet = 1;
+            else if (_change && bullet == 1)
+                bullet = 0;
+            else if (_change && bullet == 2)
+                bullet = 0;
+        }
+
+        public static bool IsDoubleTap()
+        {
+            Touch press;
+            bool _xMatch;
+            bool _yMatch;
+            Vector2 _touchPosition;
+            Vector2 _playerPosition;
+            
+
+            /*bool result = false;
+            float MaxTimeWait = 1;
+            float VariancePosition = 1;
+
+            if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                float DeltaTime = Input.GetTouch(0).deltaTime;
+                float DeltaPositionLenght = Input.GetTouch(0).deltaPosition.magnitude;
+
+                if (DeltaTime > 0 && DeltaTime < MaxTimeWait && DeltaPositionLenght < VariancePosition)
+                    result = true;
+            }
+            return result;
+            */
+            
+            _playerPosition = GameObject.Find("Player").transform.position;
+            if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                press = Input.GetTouch(0);
+                _touchPosition = Camera.main.ScreenToWorldPoint(press.position);
+                _xMatch = (_touchPosition.x <= _playerPosition.x + 0.35f && _touchPosition.x >= _playerPosition.x - 0.35f);
+                _yMatch = (_touchPosition.y <= _playerPosition.y + 0.45f && _touchPosition.y >= _playerPosition.y - 0.45f);
+                if (_xMatch && _yMatch)
+                {
+                    return true;
+                }
+            }
+            return false;
+            
         }
     }
 }

@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     private float waitTime = 1.5f;
     private float timer = 0;
     private int hp = 3;
+    private Color _color;
 
     // Update is called once per frame
     void Update()
@@ -26,9 +27,12 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Bullet")
+        if (collision.gameObject.tag == "Blue" || collision.gameObject.tag == "Green" || collision.gameObject.tag == "Pink")
         {
             Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == gameObject.tag)
+        {
             hp--;
             StartCoroutine(flash());
         }
@@ -41,8 +45,9 @@ public class Enemy : MonoBehaviour
 
     IEnumerator flash()
     {
+        _color = gameObject.GetComponent<SpriteRenderer>().color;
         gameObject.GetComponent<SpriteRenderer>().color = Color.black;
         yield return new WaitForSeconds(0.01f);
-        gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        gameObject.GetComponent<SpriteRenderer>().color = _color;
     }
 }

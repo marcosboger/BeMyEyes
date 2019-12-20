@@ -3064,6 +3064,8 @@ MonoBehaviour:
   backgroundMusic1: {fileID: 8300000, guid: e8c8cb0343be6554e8ee997a5dd7ec00, type: 3}
   backgroundMusic2: {fileID: 8300000, guid: 049dc5f23b35f2c428d6c1ad2def66ed, type: 3}
   backgroundMusic3: {fileID: 8300000, guid: 183331a6189b2e949b156d123cca69e2, type: 3}
+  backgroundMusic4: {fileID: 8300000, guid: 4994193a14c5c334d90f4d3608da432d, type: 3}
+  backgroundMusic5: {fileID: 8300000, guid: 183331a6189b2e949b156d123cca69e2, type: 3}
   errorClip: {fileID: 8300000, guid: 3d022ff0dc19a92448055fcfa0e5605a, type: 3}
 --- !u!82 &1129312226
 AudioSource:
@@ -4700,6 +4702,7 @@ MonoBehaviour:
   racingGameHighScore: 500
   jumpingGameHighScore: 500
   colourGameHighScore: 20
+  shootingGameHighScore: 500
   gamePlayed: Racing Game
 --- !u!4 &1523002704
 Transform:
@@ -5429,7 +5432,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 480, y: 252.85}
+  m_SizeDelta: {x: 560, y: 252.85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1854956975
 MonoBehaviour:
@@ -6139,7 +6142,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 120}
-  m_SizeDelta: {x: 960, y: 180}
+  m_SizeDelta: {x: 960, y: 2000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2051232991
 MonoBehaviour:

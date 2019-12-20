@@ -19,6 +19,7 @@ namespace Com.BeMyEyes.ShootingGame
         private int _random;
         private int _randomEnemy;
         private float timer = 0;
+        private float allTimer = 0;
         [SerializeField]
         private float waitTime = 1f;
         private bool _gameOver = false;
@@ -34,12 +35,29 @@ namespace Com.BeMyEyes.ShootingGame
             else
             {
                 timer += Time.deltaTime;
+                allTimer += Time.deltaTime;
                 if (timer >= waitTime)
                 {
-                    _random = Random.Range(0, 9);
-                    _randomEnemy = Random.Range(0, 2);
-                    //if (multiplier <= 1.5f)
-                    //    multiplier += 0.02f;
+                    if(allTimer <= 15f)
+                    {
+                        _random = Random.Range(0, 5);
+                        _randomEnemy = Random.Range(0, 1);
+                    }
+                    else if(allTimer > 15.0f && allTimer < 30.0f)
+                    {
+                        _random = Random.Range(0, 5);
+                         _randomEnemy = Random.Range(0, 2);
+                    }
+                    else if(allTimer > 30f && allTimer < 45f)
+                    {
+                        _random = Random.Range(0, 8);
+                        _randomEnemy = Random.Range(0, 2);
+                    }
+                    else
+                    {
+                        _random = Random.Range(0, 9);
+                        _randomEnemy = Random.Range(0, 2);
+                    }
                     if (_random == 0)
                     {
                         if(_randomEnemy == 0)

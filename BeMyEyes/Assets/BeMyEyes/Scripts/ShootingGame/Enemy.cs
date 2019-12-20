@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private float _speed = 2.0f;
+    private int type = 0;
     private float waitTime = 1.5f;
     private float timer = 0;
     private int hp = 3;

@@ -58,5 +58,18 @@ MonoBehaviour:
   - Spawn7
   - Spawn8
   - Spawn9
+  - shootBlue
+  - shootGreen
+  - shootPink
+  - spawn0
+  - spawn1
+  - spawn2
+  - spawn3
+  - spawn4
+  - spawn5
+  - spawn6
+  - spawn7
+  - spawn8
+  - spawn9
   DisableAutoOpenWizard: 1
   ShowSettings: 1

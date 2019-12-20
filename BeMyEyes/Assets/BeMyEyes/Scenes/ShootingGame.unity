@@ -130,6 +130,8 @@ GameObject:
   m_Component:
   - component: {fileID: 23665500}
   - component: {fileID: 23665501}
+  - component: {fileID: 23665503}
+  - component: {fileID: 23665502}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -163,6 +165,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9b91375f50814c4d89dabb0f90554cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &23665502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23665499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 0
+  m_SynchronizeRotation: 0
+  m_SynchronizeScale: 0
+--- !u!114 &23665503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23665499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 23665502}
+  viewIdField: 3
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &161484848
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,6 +213,8 @@ GameObject:
   - component: {fileID: 161484849}
   - component: {fileID: 161484851}
   - component: {fileID: 161484850}
+  - component: {fileID: 161484852}
+  - component: {fileID: 161484853}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -247,6 +288,61 @@ MonoBehaviour:
     type: 3}
   bulletGreen: {fileID: 4051113083385809736, guid: 0a31f4f4f42762248bb4db79307b150f,
     type: 3}
+--- !u!114 &161484852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 161484848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 161484853}
+  viewIdField: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &161484853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 161484848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8efc6b1d64977384eb3405357896c656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PositionModel:
+    SynchronizeEnabled: 1
+    TeleportEnabled: 1
+    TeleportIfDistanceGreaterThan: 3
+    InterpolateOption: 2
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 1
+    ExtrapolateOption: 0
+    ExtrapolateSpeed: 1
+    ExtrapolateIncludingRoundTripTime: 1
+    ExtrapolateNumberOfStoredPositions: 1
+  m_RotationModel:
+    SynchronizeEnabled: 0
+    InterpolateOption: 1
+    InterpolateRotateTowardsSpeed: 180
+    InterpolateLerpSpeed: 5
+  m_ScaleModel:
+    SynchronizeEnabled: 0
+    InterpolateOption: 0
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 0
 --- !u!1 &217846540
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,6 +656,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 527662141}
+  - component: {fileID: 527662143}
+  - component: {fileID: 527662144}
   - component: {fileID: 527662142}
   m_Layer: 0
   m_Name: Spawn Manager
@@ -591,7 +689,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 527662140}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6568ea9ac5c7f6d499238b0bc21dda2f, type: 3}
+  m_Script: {fileID: 11500000, guid: 63e55840ba34009408ce98b66671b75e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   blueEnemy: {fileID: 222386711747435293, guid: 57dcd9a34710d61449159a86a05ee29a,
@@ -601,6 +699,43 @@ MonoBehaviour:
   pinkEnemy: {fileID: 2292184596093835670, guid: 51c7a002a6abdb142a3c3c48fcbdb4a7,
     type: 3}
   waitTime: 1.5
+--- !u!114 &527662143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527662140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 527662144}
+  viewIdField: 2
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &527662144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527662140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 0
+  m_SynchronizeRotation: 0
+  m_SynchronizeScale: 0
 --- !u!1 &1002257583
 GameObject:
   m_ObjectHideFlags: 0

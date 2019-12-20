@@ -123,6 +123,8 @@ public class MenuManager : MonoBehaviourPunCallbacks
                 _highScore.text = GeneralManager.Instance.jumpingGameHighScore.ToString();
             if (GeneralManager.Instance.gamePlayed == "Colour Game")
                 _highScore.text = GeneralManager.Instance.colourGameHighScore.ToString();
+            if (GeneralManager.Instance.gamePlayed == "Shooting Game")
+                _highScore.text = GeneralManager.Instance.shootingGameHighScore.ToString();
         }
     }
 
@@ -264,6 +266,11 @@ public class MenuManager : MonoBehaviourPunCallbacks
         else if(_gameName.text == "Colour Game")
         {
             PhotonView photonView = PhotonView.Get(this);
+            photonView.RPC("setGame", RpcTarget.All, "Shooting Game");
+        }
+        else if(_gameName.text == "Shooting Game")
+        {
+            PhotonView photonView = PhotonView.Get(this);
             photonView.RPC("setGame", RpcTarget.All, "Racing Game");
         }
     }
@@ -273,7 +280,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
         if (_gameName.text == "Racing Game")
         {
             PhotonView photonView = PhotonView.Get(this);
-            photonView.RPC("setGame", RpcTarget.All, "Colour Game");
+            photonView.RPC("setGame", RpcTarget.All, "Shooting Game");
         }
         else if (_gameName.text == "Jumping Game")
         {
@@ -284,6 +291,11 @@ public class MenuManager : MonoBehaviourPunCallbacks
         {
             PhotonView photonView = PhotonView.Get(this);
             photonView.RPC("setGame", RpcTarget.All, "Jumping Game");
+        }
+        else if (_gameName.text == "Shooting Game")
+        {
+            PhotonView photonView = PhotonView.Get(this);
+            photonView.RPC("setGame", RpcTarget.All, "Colour Game");
         }
     }
 
@@ -300,6 +312,10 @@ public class MenuManager : MonoBehaviourPunCallbacks
         else if (GeneralManager.Instance.gamePlayed == "Colour Game")
         {
             PhotonNetwork.LoadLevel("ColorGame");
+        }
+        else if(GeneralManager.Instance.gamePlayed == "Shooting Game")
+        {
+            PhotonNetwork.LoadLevel("ShootingGame");
         }
     }
 
@@ -389,6 +405,8 @@ public class MenuManager : MonoBehaviourPunCallbacks
             _highScore.text = GeneralManager.Instance.jumpingGameHighScore.ToString();
         if(gameName == "Colour Game")
             _highScore.text = GeneralManager.Instance.colourGameHighScore.ToString();
+        if (gameName == "Shooting Game")
+            _highScore.text = GeneralManager.Instance.shootingGameHighScore.ToString();
     }
 
     [PunRPC]

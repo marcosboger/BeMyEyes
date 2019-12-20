@@ -6,6 +6,7 @@ namespace Com.BeMyEyes.ShootingGame
 {
     public class Bullet : MonoBehaviour
     {
+        private int type = 1;
         public float speed = 5.0f;
 
         // Update is called once per frame

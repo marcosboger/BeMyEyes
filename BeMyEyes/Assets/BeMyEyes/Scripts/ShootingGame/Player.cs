@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 namespace Com.BeMyEyes.ShootingGame
 {
@@ -46,6 +47,10 @@ namespace Com.BeMyEyes.ShootingGame
         // Update is called once per frame
         void Update()
         {
+            if (gameObject.GetComponent<PhotonView>().IsMine == false && PhotonNetwork.IsConnected == true)
+            {
+                return;
+            }
             Move();
             Shoot();
             changeBullet();
@@ -95,12 +100,14 @@ namespace Com.BeMyEyes.ShootingGame
         IEnumerator shooting()
         {
             yield return new WaitForSeconds(cooldown);
+            PhotonView photon;
+            photon = PhotonView.Get(this);
             if (bullet == 0)
-                Instantiate(bulletBlue, shootingPosition.transform.position, Quaternion.identity);
+                photon.RPC("shootBlue", RpcTarget.AllViaServer, null);
             if (bullet == 1)
-                Instantiate(bulletPink, shootingPosition.transform.position, Quaternion.identity);
+                photon.RPC("shootPink", RpcTarget.AllViaServer, null);
             if (bullet == 2)
-                Instantiate(bulletGreen, shootingPosition.transform.position, Quaternion.identity);
+                photon.RPC("shootGreen", RpcTarget.AllViaServer, null);
             _shoot = true;
         }
 
@@ -152,7 +159,24 @@ namespace Com.BeMyEyes.ShootingGame
                 }
             }
             return false;
-            
+        }
+
+        [PunRPC]
+        public void shootBlue()
+        {
+            Instantiate(bulletBlue, shootingPosition.transform.position, Quaternion.identity);
+        }
+
+        [PunRPC]
+        public void shootPink()
+        {
+            Instantiate(bulletPink, shootingPosition.transform.position, Quaternion.identity);
+        }
+
+        [PunRPC]
+        public void shootGreen()
+        {
+            Instantiate(bulletGreen, shootingPosition.transform.position, Quaternion.identity);
         }
     }
 }

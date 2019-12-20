@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7872783518894792942}
   - component: {fileID: 7872783518894792944}
   - component: {fileID: 5034813459986129891}
+  - component: {fileID: 2814416322116529976}
   m_Layer: 0
   m_Name: Enemy Green
   m_TagString: Green
@@ -136,3 +137,24 @@ EdgeCollider2D:
   - {x: 0.08264065, y: -6.4461517}
   - {x: 7.2514963, y: 6.2808704}
   - {x: -7.1283865, y: 6.19823}
+--- !u!114 &2814416322116529976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7872783518894792939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 0
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0

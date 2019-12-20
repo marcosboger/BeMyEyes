@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class AudioManager : Singleton<AudioManager>
 {
     private int _track;
-    private int _lastTrack;
+    private int _lastTrack = 5;
 
     public AudioSource background;
     public AudioSource SFX;
@@ -15,6 +15,8 @@ public class AudioManager : Singleton<AudioManager>
     public AudioClip backgroundMusic1;
     public AudioClip backgroundMusic2;
     public AudioClip backgroundMusic3;
+    public AudioClip backgroundMusic4;
+    public AudioClip backgroundMusic5;
     public AudioClip errorClip;
 
     private Slider musicVolume;
@@ -31,7 +33,7 @@ public class AudioManager : Singleton<AudioManager>
     {
         if (!background.isPlaying)
         {
-            _track = Random.Range((int)0, (int)3);
+            _track = Random.Range(0, 5);
             if (_track == 0)
             {
                 if(_track != _lastTrack)
@@ -53,6 +55,22 @@ public class AudioManager : Singleton<AudioManager>
                 if(_track != _lastTrack)
                 {
                     background.PlayOneShot(backgroundMusic3);
+                    _lastTrack = _track;
+                }
+            }
+            else if (_track == 3)
+            {
+                if (_track != _lastTrack)
+                {
+                    background.PlayOneShot(backgroundMusic4);
+                    _lastTrack = _track;
+                }
+            }
+            else if (_track == 4)
+            {
+                if (_track != _lastTrack)
+                {
+                    background.PlayOneShot(backgroundMusic5);
                     _lastTrack = _track;
                 }
             }

@@ -44,6 +44,7 @@ public class ScoreManager : MonoBehaviour
 
         if (GeneralManager.Instance.gamePlayed == "Shooting Game")
             GeneralManager.Instance.setShootingHighScore(score);
+        
 
         dead = true;
     }

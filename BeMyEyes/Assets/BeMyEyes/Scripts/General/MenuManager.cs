@@ -9,75 +9,40 @@ public class MenuManager : MonoBehaviourPunCallbacks
 {
     const string playerNamePrefKey = "PlayerName";
 
-    private GameObject _loadingScreen;
-    private GameObject _chooseNameMenu;
-    private GameObject _menuBackground;
-    private GameObject _mainMenu;
-    private GameObject _optionsMenu;
-    private GameObject _nameRoomMenu;
-    private GameObject _roomMenu;
-    private GameObject _insideRoom;
-    private GameObject _gameSelection;
-    private GameObject _createRoom;
-    private GameObject _joinRoom;
-    private GameObject _player2;
-    private GameObject _start;
-    private GameObject _wait;
+    public GameObject _loadingScreen;
+    public GameObject _chooseNameMenu;
+    public GameObject _menuBackground;
+    public GameObject _mainMenu;
+    public GameObject _optionsMenu;
+    public GameObject _nameRoomMenu;
+    public GameObject _roomMenu;
+    public GameObject _insideRoom;
+    public GameObject _gameSelection;
+    public GameObject _createRoom;
+    public GameObject _joinRoom;
+    public GameObject _player2;
+    public GameObject _start;
+    public GameObject _wait;
 
-    private Button _startButton;
-    private Button _leftArrow;
-    private Button _rightArrow;
-    private Button _playGameSelection;
+    public Button _startButton;
+    public Button _leftArrow;
+    public Button _rightArrow;
+    public Button _playGameSelection;
 
-    private Text _roomNameText;
-    private Text _player1Name;
-    private Text _player2Name;
-    private Text _gameName;
-    private Text _highScore;
+    public Text _roomNameText;
+    public Text _player1Name;
+    public Text _player2Name;
+    public Text _gameName;
+    public Text _highScore;
 
-    private InputField _roomName;
-    private InputField _nickName;
+    public InputField _roomName;
+    public InputField _nickName;
 
     string gameVersion = "1";
 
     // Start is called before the first frame update
     void Start()
     {
-        //Finding important objects
-
-        //Menu Parents
-        _loadingScreen = GameObject.Find("Loading Screen");
-        _chooseNameMenu = GameObject.Find("Choose Name Menu");
-        _menuBackground = GameObject.Find("Menu Background");
-        _mainMenu = GameObject.Find("Main Menu");
-        _optionsMenu = GameObject.Find("Options Menu");
-        _nameRoomMenu = GameObject.Find("Name Room Menu");
-        _roomMenu = GameObject.Find("Room Menu");
-        _insideRoom = GameObject.Find("Inside Room Menu");
-        _gameSelection = GameObject.Find("Game Selection Menu");
-
-        //Menu Childs  
-        _createRoom = GameObject.Find("Create Room Name");
-        _joinRoom = GameObject.Find("Join Room Name");
-        _player2 = GameObject.Find("Player2");
-        _start = GameObject.Find("Start");
-        _wait = GameObject.Find("Wait");
-
-        //Buttons, Inputs and Texts
-        _startButton = GameObject.Find("Start").GetComponent<Button>();
-        _roomName = GameObject.Find("Room Name").GetComponent<InputField>();
-        _nickName = GameObject.Find("Name").GetComponent<InputField>();
-        _roomNameText = GameObject.Find("Room Name Text").GetComponent<Text>();
-        _player1Name = GameObject.Find("Player1 Name").GetComponent<Text>();
-        _player2Name = GameObject.Find("Player2 Name").GetComponent<Text>();
-        _gameName = GameObject.Find("Game Name").GetComponent<Text>();
-        _gameName.text = "Racing Game";
-        _leftArrow = GameObject.Find("Left Arrow").GetComponent<Button>();
-        _rightArrow = GameObject.Find("Right Arrow").GetComponent<Button>();
-        _playGameSelection = GameObject.Find("Play Game Selection").GetComponent<Button>();
-        _highScore = GameObject.Find("High Score").GetComponent<Text>();
-
-
         //Deactivate everything unless the starting Screen
         _chooseNameMenu.SetActive(true);
         _menuBackground.SetActive(true);

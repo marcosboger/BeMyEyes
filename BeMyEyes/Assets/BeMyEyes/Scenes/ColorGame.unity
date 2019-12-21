@@ -807,6 +807,16 @@ MonoBehaviour:
   - {fileID: 1809648328}
   - {fileID: 15854373}
   blinkWait: []
+  lights:
+  - {fileID: 591681514}
+  - {fileID: 1146015208}
+  - {fileID: 999117302}
+  - {fileID: 1883473277}
+  - {fileID: 2032399529}
+  - {fileID: 1871451232}
+  - {fileID: 1369776705}
+  text: {fileID: 1411111706}
+  buttonsUI: {fileID: 1998881687}
   ScoreText: {fileID: 1334815811}
 --- !u!4 &885893987
 Transform:

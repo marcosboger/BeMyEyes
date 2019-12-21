@@ -4066,6 +4066,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 943536d794463f14db8a1827d92adb88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _loadingScreen: {fileID: 2021756366}
+  _chooseNameMenu: {fileID: 826685448}
+  _menuBackground: {fileID: 1743529261}
+  _mainMenu: {fileID: 1779015130}
+  _optionsMenu: {fileID: 11246323}
+  _nameRoomMenu: {fileID: 1127022053}
+  _roomMenu: {fileID: 858008854}
+  _insideRoom: {fileID: 1958024792}
+  _gameSelection: {fileID: 45156054}
+  _createRoom: {fileID: 391453769}
+  _joinRoom: {fileID: 1119968093}
+  _player2: {fileID: 2080136024}
+  _start: {fileID: 1325247415}
+  _wait: {fileID: 1744681050}
+  _startButton: {fileID: 1325247417}
+  _leftArrow: {fileID: 1759837356}
+  _rightArrow: {fileID: 1521822837}
+  _playGameSelection: {fileID: 1189613709}
+  _roomNameText: {fileID: 2051232991}
+  _player1Name: {fileID: 1747958268}
+  _player2Name: {fileID: 1472319384}
+  _gameName: {fileID: 1854956975}
+  _highScore: {fileID: 1177381433}
+  _roomName: {fileID: 2038201305}
+  _nickName: {fileID: 1500217134}
 --- !u!114 &1363828923
 MonoBehaviour:
   m_ObjectHideFlags: 0

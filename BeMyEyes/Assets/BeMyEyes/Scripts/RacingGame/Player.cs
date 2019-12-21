@@ -14,7 +14,6 @@ namespace Com.BeMyEyes.RacingGame
         private Vector2 _touchPosition;
         private Vector2 touchInitialPosition, touchPosition;
         private float deltaX;
-        public Joystick joystick;
         private GameObject _player;
         private Vector2 _playerPosition;
         private bool _xMatch, _yMatch;

@@ -19,9 +19,9 @@ namespace Com.BeMyEyes.ColourGame
         public List<Button> buttons = new List<Button>();
         public List<float> blinkWait = new List<float>();
         private List<int> usedcolors = new List<int>();
-        private GameObject[] lights;
-        private GameObject text;
-        private GameObject buttonsUI;
+        public GameObject[] lights;
+        public GameObject text;
+        public GameObject buttonsUI;
         private float waitTime = 2f;
         private float waiting = 1.5f;
         private int _random;
@@ -37,8 +37,6 @@ namespace Com.BeMyEyes.ColourGame
         // Start is called before the first frame update
         void Start()
         {
-            buttonsUI = GameObject.Find("Buttons");
-            text = GameObject.Find("GameOverText");
             text.SetActive(false);
             colorNames[0] = "blue";
             colorNames[1] = "green";
@@ -81,7 +79,6 @@ namespace Com.BeMyEyes.ColourGame
                     buttons[i].interactable = false;
                 }
             }
-            lights = GameObject.FindGameObjectsWithTag("Light");
             if (PhotonNetwork.IsMasterClient)
             {
                 for (int i = 0; i < lights.Length; i++)

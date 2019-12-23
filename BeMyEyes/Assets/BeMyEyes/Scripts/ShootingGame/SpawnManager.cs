@@ -10,11 +10,7 @@ namespace Com.BeMyEyes.ShootingGame
         [SerializeField]
         private GameObject blueEnemy;
         [SerializeField]
-        private GameObject greenEnemy;
-        [SerializeField]
-        private GameObject pinkEnemy;
-
-        private GameObject enemy;
+        private GameObject UFO;
 
         private int _random;
         private int _randomEnemy;
@@ -121,17 +117,10 @@ namespace Com.BeMyEyes.ShootingGame
         public void spawn0(int enemy)
         {
             if (enemy == 0)
-            {
                 Instantiate(blueEnemy, new Vector3(-2, 5, 0), Quaternion.identity);
-            }
             else if (enemy == 1)
-            {
-                Instantiate(pinkEnemy, new Vector3(-2, 5, 0), Quaternion.identity);
-            }
-            else if (enemy == 2)
-            {
-                Instantiate(greenEnemy, new Vector3(-2, 5, 0), Quaternion.identity);
-            }
+                Instantiate(UFO, new Vector3(-2, 5, 0), Quaternion.identity);
+            
         }
         [PunRPC]
         public void spawn1(int enemy)
@@ -139,9 +128,7 @@ namespace Com.BeMyEyes.ShootingGame
             if (enemy == 0)
                 Instantiate(blueEnemy, new Vector3(-1, 5, 0), Quaternion.identity);
             else if (enemy == 1)
-                Instantiate(pinkEnemy, new Vector3(-1, 5, 0), Quaternion.identity);
-            else if (enemy == 2)
-                Instantiate(greenEnemy, new Vector3(-1, 5, 0), Quaternion.identity);
+                Instantiate(UFO, new Vector3(-1, 5, 0), Quaternion.identity);
         }
         [PunRPC]
         public void spawn2(int enemy)
@@ -149,9 +136,7 @@ namespace Com.BeMyEyes.ShootingGame
             if (enemy == 0)
                 Instantiate(blueEnemy, new Vector3(0, 5, 0), Quaternion.identity);
             else if (enemy == 1)
-                Instantiate(pinkEnemy, new Vector3(0, 5, 0), Quaternion.identity);
-            else if (enemy == 2)
-                Instantiate(greenEnemy, new Vector3(0, 5, 0), Quaternion.identity);
+                Instantiate(UFO, new Vector3(0, 5, 0), Quaternion.identity);
         }
         [PunRPC]
         public void spawn3(int enemy)
@@ -159,9 +144,7 @@ namespace Com.BeMyEyes.ShootingGame
             if (enemy == 0)
                 Instantiate(blueEnemy, new Vector3(1, 5, 0), Quaternion.identity);
             else if (enemy == 1)
-                Instantiate(pinkEnemy, new Vector3(1, 5, 0), Quaternion.identity);
-            else if (enemy == 2)
-                Instantiate(greenEnemy, new Vector3(1, 5, 0), Quaternion.identity);
+                Instantiate(UFO, new Vector3(1, 5, 0), Quaternion.identity);
         }
         [PunRPC]
         public void spawn4(int enemy)
@@ -169,9 +152,7 @@ namespace Com.BeMyEyes.ShootingGame
             if (enemy == 0)
                 Instantiate(blueEnemy, new Vector3(2, 5, 0), Quaternion.identity);
             else if (enemy == 1)
-                Instantiate(pinkEnemy, new Vector3(2, 5, 0), Quaternion.identity);
-            else if (enemy == 2)
-                Instantiate(greenEnemy, new Vector3(2, 5, 0), Quaternion.identity);
+                Instantiate(UFO, new Vector3(-1, 5, 0), Quaternion.identity);
         }
         [PunRPC]
         public void spawn5(int enemy)
@@ -185,15 +166,9 @@ namespace Com.BeMyEyes.ShootingGame
             if (enemy == 1)
             {
 
-                Instantiate(pinkEnemy, new Vector3(-2, 5, 0), Quaternion.identity);
-                Instantiate(pinkEnemy, new Vector3(0, 5, 0), Quaternion.identity);
-                Instantiate(pinkEnemy, new Vector3(2, 5, 0), Quaternion.identity);
-            }
-            if (enemy == 2)
-            {
-                Instantiate(greenEnemy, new Vector3(-2, 5, 0), Quaternion.identity);
-                Instantiate(greenEnemy, new Vector3(0, 5, 0), Quaternion.identity);
-                Instantiate(greenEnemy, new Vector3(2, 5, 0), Quaternion.identity);
+                Instantiate(UFO, new Vector3(-2, 5, 0), Quaternion.identity);
+                Instantiate(UFO, new Vector3(0, 5, 0), Quaternion.identity);
+                Instantiate(UFO, new Vector3(2, 5, 0), Quaternion.identity);
             }
 
         }
@@ -209,15 +184,9 @@ namespace Com.BeMyEyes.ShootingGame
             if (enemy == 1)
             {
 
-                Instantiate(pinkEnemy, new Vector3(-1, 5, 0), Quaternion.identity);
-                Instantiate(pinkEnemy, new Vector3(0, 5, 0), Quaternion.identity);
-                Instantiate(pinkEnemy, new Vector3(1, 5, 0), Quaternion.identity);
-            }
-            if (enemy == 2)
-            {
-                Instantiate(greenEnemy, new Vector3(-1, 5, 0), Quaternion.identity);
-                Instantiate(greenEnemy, new Vector3(0, 5, 0), Quaternion.identity);
-                Instantiate(greenEnemy, new Vector3(1, 5, 0), Quaternion.identity);
+                Instantiate(UFO, new Vector3(-1, 5, 0), Quaternion.identity);
+                Instantiate(UFO, new Vector3(0, 5, 0), Quaternion.identity);
+                Instantiate(UFO, new Vector3(1, 5, 0), Quaternion.identity);
             }
         }
         [PunRPC]
@@ -231,13 +200,8 @@ namespace Com.BeMyEyes.ShootingGame
             if (enemy == 1)
             {
 
-                Instantiate(pinkEnemy, new Vector3(-1, 5, 0), Quaternion.identity);
-                Instantiate(pinkEnemy, new Vector3(1, 5, 0), Quaternion.identity);
-            }
-            if (enemy == 2)
-            {
-                Instantiate(greenEnemy, new Vector3(-1, 5, 0), Quaternion.identity);
-                Instantiate(greenEnemy, new Vector3(1, 5, 0), Quaternion.identity);
+                Instantiate(UFO, new Vector3(-1, 5, 0), Quaternion.identity);
+                Instantiate(UFO, new Vector3(1, 5, 0), Quaternion.identity);
             }
         }
 
@@ -252,15 +216,9 @@ namespace Com.BeMyEyes.ShootingGame
             }
             if (enemy == 1)
             {
-                Instantiate(pinkEnemy, new Vector3(-2, 5, 0), Quaternion.identity);
-                Instantiate(pinkEnemy, new Vector3(-1, 5, 0), Quaternion.identity);
-                Instantiate(pinkEnemy, new Vector3(0, 5, 0), Quaternion.identity);
-            }
-            if (enemy == 2)
-            {
-                Instantiate(greenEnemy, new Vector3(-2, 5, 0), Quaternion.identity);
-                Instantiate(greenEnemy, new Vector3(-1, 5, 0), Quaternion.identity);
-                Instantiate(greenEnemy, new Vector3(0, 5, 0), Quaternion.identity);
+                Instantiate(UFO, new Vector3(-2, 5, 0), Quaternion.identity);
+                Instantiate(UFO, new Vector3(-1, 5, 0), Quaternion.identity);
+                Instantiate(UFO, new Vector3(0, 5, 0), Quaternion.identity);
             }
         }
 
@@ -275,15 +233,9 @@ namespace Com.BeMyEyes.ShootingGame
             }
             if (enemy == 1)
             {
-                Instantiate(pinkEnemy, new Vector3(+2, 5, 0), Quaternion.identity);
-                Instantiate(pinkEnemy, new Vector3(+1, 5, 0), Quaternion.identity);
-                Instantiate(pinkEnemy, new Vector3(0, 5, 0), Quaternion.identity);
-            }
-            if (enemy == 2)
-            {
-                Instantiate(greenEnemy, new Vector3(+2, 5, 0), Quaternion.identity);
-                Instantiate(greenEnemy, new Vector3(+1, 5, 0), Quaternion.identity);
-                Instantiate(greenEnemy, new Vector3(0, 5, 0), Quaternion.identity);
+                Instantiate(UFO, new Vector3(+2, 5, 0), Quaternion.identity);
+                Instantiate(UFO, new Vector3(+1, 5, 0), Quaternion.identity);
+                Instantiate(UFO, new Vector3(0, 5, 0), Quaternion.identity);
             }
         }
     }

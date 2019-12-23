@@ -71,5 +71,7 @@ MonoBehaviour:
   - spawn7
   - spawn8
   - spawn9
+  - shootMissile
+  - takeDamage
   DisableAutoOpenWizard: 1
   ShowSettings: 1

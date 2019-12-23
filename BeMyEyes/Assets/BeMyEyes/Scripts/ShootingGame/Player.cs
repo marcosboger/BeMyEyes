@@ -10,22 +10,27 @@ namespace Com.BeMyEyes.ShootingGame
         private Touch touch;
 
         private float deltaX, deltaY, xPosition, yPosition;
-        
+
         [SerializeField]
         private float cooldown = 0.2f;
+        [SerializeField]
+        private float missileCooldown = 0.5f;
 
         [SerializeField]
         private GameObject ScoreManager;
         [SerializeField]
         private GameObject bulletBlue;
         [SerializeField]
-        private GameObject bulletPink;
-        [SerializeField]
-        private GameObject bulletGreen;
+        private GameObject missile;
 
         private GameObject _player;
         private GameObject shootingPosition;
-        
+
+        private float missileTimer = 0;
+        private float shootingTimer = 0;
+        private float wait = 0;
+        private float preWait = 0;
+
 
         ScoreManager scoreScript;
 
@@ -36,12 +41,15 @@ namespace Com.BeMyEyes.ShootingGame
 
         private int bullet = 0;
 
+        PhotonView photon;
+
         // Start is called before the first frame update
         void Start()
         {
             shootingPosition = GameObject.Find("Shooting Position");
             _player = GameObject.Find("Player");
             scoreScript = ScoreManager.GetComponent<ScoreManager>();
+            photon = PhotonView.Get(this);
         }
 
         // Update is called once per frame
@@ -53,7 +61,7 @@ namespace Com.BeMyEyes.ShootingGame
             }
             Move();
             Shoot();
-            changeBullet();
+            selectMissile();
         }
 
         public void Move()
@@ -90,48 +98,19 @@ namespace Com.BeMyEyes.ShootingGame
 
         public void Shoot()
         {
-            if (_shoot)
+            shootingTimer += Time.deltaTime;
+            if (shootingTimer > cooldown && wait < 0 && preWait < 0)
             {
-                _shoot = false;
-                StartCoroutine(shooting());
-            }
-        }
-
-        IEnumerator shooting()
-        {
-            yield return new WaitForSeconds(cooldown);
-            PhotonView photon;
-            photon = PhotonView.Get(this);
-            if (bullet == 0)
                 photon.RPC("shootBlue", RpcTarget.AllViaServer, null);
-            if (bullet == 1)
-                photon.RPC("shootPink", RpcTarget.AllViaServer, null);
-            if (bullet == 2)
-                photon.RPC("shootGreen", RpcTarget.AllViaServer, null);
-            _shoot = true;
-        }
-
-        public void changeBullet()
-        {
-            bool _change = IsDoubleTap();
-            if (_change && bullet == 0)
-                bullet = 1;
-            else if (_change && bullet == 1)
-                bullet = 0;
-            else if (_change && bullet == 2)
-                bullet = 0;
+                shootingTimer = 0;
+                wait = 0;
+                preWait = 0;
+            }
         }
 
         public static bool IsDoubleTap()
         {
-            Touch press;
-            bool _xMatch;
-            bool _yMatch;
-            Vector2 _touchPosition;
-            Vector2 _playerPosition;
-            
-
-            /*bool result = false;
+            bool result = false;
             float MaxTimeWait = 1;
             float VariancePosition = 1;
 
@@ -144,39 +123,42 @@ namespace Com.BeMyEyes.ShootingGame
                     result = true;
             }
             return result;
-            */
-            
-            _playerPosition = GameObject.Find("Player").transform.position;
-            if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
+        }
+
+        public void selectMissile()
+        {
+            missileTimer += Time.deltaTime;
+            wait -= Time.deltaTime;
+            preWait -= Time.deltaTime;
+
+            if (preWait < 0 && _shoot)
             {
-                press = Input.GetTouch(0);
-                _touchPosition = Camera.main.ScreenToWorldPoint(press.position);
-                _xMatch = (_touchPosition.x <= _playerPosition.x + 0.35f && _touchPosition.x >= _playerPosition.x - 0.35f);
-                _yMatch = (_touchPosition.y <= _playerPosition.y + 0.45f && _touchPosition.y >= _playerPosition.y - 0.45f);
-                if (_xMatch && _yMatch)
+                photon.RPC("shootMissile", RpcTarget.AllViaServer, null);
+                wait = 0.1f;
+                _shoot = false;
+            }
+
+            if (PhotonNetwork.IsMasterClient)
+            {
+                if (IsDoubleTap() && missileTimer > missileCooldown)
                 {
-                    return true;
+                    preWait = 0.1f;
+                    _shoot = true;
+                    missileTimer = 0;
                 }
             }
-            return false;
+        }
+
+        [PunRPC]
+        public void shootMissile()
+        {
+            Instantiate(missile, shootingPosition.transform.position, Quaternion.identity);
         }
 
         [PunRPC]
         public void shootBlue()
         {
             Instantiate(bulletBlue, shootingPosition.transform.position, Quaternion.identity);
-        }
-
-        [PunRPC]
-        public void shootPink()
-        {
-            Instantiate(bulletPink, shootingPosition.transform.position, Quaternion.identity);
-        }
-
-        [PunRPC]
-        public void shootGreen()
-        {
-            Instantiate(bulletGreen, shootingPosition.transform.position, Quaternion.identity);
         }
     }
 }

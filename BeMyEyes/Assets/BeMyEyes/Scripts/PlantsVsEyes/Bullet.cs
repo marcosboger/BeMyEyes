@@ -22,11 +22,9 @@ namespace Com.BeMyEyes.PlantsVsEyes
         {
             if (gameObject.CompareTag(collision.gameObject.tag))
             {
-
                 Destroy(collision.gameObject);
             }
-
-            Destroy(collision.gameObject);
+            Destroy(this.gameObject);
         }
     }
 }

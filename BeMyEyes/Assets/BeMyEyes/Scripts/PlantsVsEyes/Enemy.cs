@@ -15,7 +15,7 @@ namespace Com.BeMyEyes.PlantsVsEyes
             if (transform.position.y < -2.4f)
             {
                 Destroy(gameObject);
-                //GameManager.GameOver();
+                GameObject.Find("Game Manager").GetComponent<GameManager>().GameOver();
             }
         }
     }

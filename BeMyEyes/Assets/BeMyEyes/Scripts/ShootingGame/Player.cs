@@ -28,8 +28,6 @@ namespace Com.BeMyEyes.ShootingGame
 
         private float missileTimer = 0;
         private float shootingTimer = 0;
-        private float wait = 0;
-        private float preWait = 0;
 
 
         ScoreManager scoreScript;
@@ -37,7 +35,6 @@ namespace Com.BeMyEyes.ShootingGame
         private Vector2 touchInitialPosition;
         private Vector2 touchPosition;
 
-        private bool _shoot = true;
 
         private int bullet = 0;
 
@@ -99,12 +96,10 @@ namespace Com.BeMyEyes.ShootingGame
         public void Shoot()
         {
             shootingTimer += Time.deltaTime;
-            if (shootingTimer > cooldown && wait < 0 && preWait < 0)
+            if (shootingTimer > cooldown)
             {
                 photon.RPC("shootBlue", RpcTarget.AllViaServer, null);
                 shootingTimer = 0;
-                wait = 0;
-                preWait = 0;
             }
         }
 
@@ -128,23 +123,13 @@ namespace Com.BeMyEyes.ShootingGame
         public void selectMissile()
         {
             missileTimer += Time.deltaTime;
-            wait -= Time.deltaTime;
-            preWait -= Time.deltaTime;
-
-            if (preWait < 0 && _shoot)
-            {
-                photon.RPC("shootMissile", RpcTarget.AllViaServer, null);
-                wait = 0.1f;
-                _shoot = false;
-            }
 
             if (PhotonNetwork.IsMasterClient)
             {
                 if (IsDoubleTap() && missileTimer > missileCooldown)
                 {
-                    preWait = 0.1f;
-                    _shoot = true;
                     missileTimer = 0;
+                    photon.RPC("shootMissile", RpcTarget.AllViaServer, null);
                 }
             }
         }

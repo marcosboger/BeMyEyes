@@ -63,7 +63,7 @@ namespace Com.BeMyEyes.ColourGame
                         if (random == usedcolors[z])
                             podepa = false;
                     }
-                    if (random == i)
+                    if (random == i && i != 6)
                         podepa = false;
                 }
                 usedcolors.Add(random);

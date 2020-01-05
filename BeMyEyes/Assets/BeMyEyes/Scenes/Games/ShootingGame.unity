@@ -281,12 +281,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 0.2
+  missileCooldown: 0.5
   ScoreManager: {fileID: 291589215}
   bulletBlue: {fileID: 1431944944624136719, guid: 52ba050681e1ef449a503ee438d88fcd,
-    type: 3}
-  bulletPink: {fileID: 8006596329837144564, guid: f20eec077466ca94f92c2ae7330ecb93,
-    type: 3}
-  bulletGreen: {fileID: 4051113083385809736, guid: 0a31f4f4f42762248bb4db79307b150f,
     type: 3}
   missile: {fileID: 4641583593058708948, guid: fd56cb617b6ad5e45a6445465fd99cdd, type: 3}
 --- !u!114 &161484852
@@ -327,7 +324,7 @@ MonoBehaviour:
     SynchronizeEnabled: 1
     TeleportEnabled: 1
     TeleportIfDistanceGreaterThan: 3
-    InterpolateOption: 2
+    InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 1
     ExtrapolateOption: 0
@@ -694,10 +691,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blueEnemy: {fileID: 222386711747435293, guid: 57dcd9a34710d61449159a86a05ee29a,
-    type: 3}
-  greenEnemy: {fileID: 7872783518894792939, guid: bd64e3b5e16ea714f976634a976e20cd,
-    type: 3}
-  pinkEnemy: {fileID: 2292184596093835670, guid: 51c7a002a6abdb142a3c3c48fcbdb4a7,
     type: 3}
   UFO: {fileID: 8620724994673138218, guid: 27294f38f3778d24585f1025ccf968e9, type: 3}
   waitTime: 1.5

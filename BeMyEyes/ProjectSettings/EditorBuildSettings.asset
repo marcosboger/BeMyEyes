@@ -5,22 +5,22 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/BeMyEyes/Scenes/Main Menu Portrait.unity
     guid: b4655259b62076b41a8abf61bac4fb07
-  - enabled: 0
+  - enabled: 1
     path: Assets/BeMyEyes/Scenes/Games/RacingGame.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
+  - enabled: 1
     path: Assets/BeMyEyes/Scenes/Games/JumpingGame.unity
     guid: 74b39e20b9a145f4182e56276ce16dd7
-  - enabled: 0
+  - enabled: 1
     path: Assets/BeMyEyes/Scenes/Games/ColorGame.unity
     guid: 3923c2582fc176d4bb0df72eecbd87e3
-  - enabled: 0
+  - enabled: 1
     path: Assets/BeMyEyes/Scenes/Games/ShootingGame.unity
     guid: 30efc15dce228a44d9c42cbafbe7e47d
-  - enabled: 1
+  - enabled: 0
     path: Assets/BeMyEyes/Scenes/Games/PlantsVsEyes.unity
     guid: 9c70e1733fbf83147821dec5a2804b57
   m_configObjects: {}

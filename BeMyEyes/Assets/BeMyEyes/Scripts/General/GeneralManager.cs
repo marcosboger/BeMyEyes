@@ -8,11 +8,13 @@ public class GeneralManager : Singleton<GeneralManager>
     const string highScoreJumpingPrefKey = "highScoreJumping";
     const string highScoreColourPrefKey = "highScoreColour";
     const string highScoreShootingPrefKey = "highScoreShooting";
+    const string highScorePlantsPrefKey = "highScorePlants";
 
     public int racingGameHighScore = 500;
     public int jumpingGameHighScore = 500;
     public int colourGameHighScore = 20;
     public int shootingGameHighScore = 500;
+    public int plantsHighScore = 500;
     public string gamePlayed = "Racing Game";
 
     private void Start()
@@ -35,6 +37,11 @@ public class GeneralManager : Singleton<GeneralManager>
         if (PlayerPrefs.HasKey(highScoreShootingPrefKey))
         {
             shootingGameHighScore = PlayerPrefs.GetInt(highScoreShootingPrefKey);
+        }
+
+        if (PlayerPrefs.HasKey(highScorePlantsPrefKey))
+        {
+            plantsHighScore = PlayerPrefs.GetInt(highScorePlantsPrefKey);
         }
     }
 
@@ -71,6 +78,15 @@ public class GeneralManager : Singleton<GeneralManager>
         {
             shootingGameHighScore = score;
             PlayerPrefs.SetInt(highScoreShootingPrefKey, score);
+        }
+    }
+
+    public void setPlantsHighScore(int score)
+    {
+        if (score > plantsHighScore)
+        {
+            plantsHighScore = score;
+            PlayerPrefs.SetInt(highScorePlantsPrefKey, score);
         }
     }
 }

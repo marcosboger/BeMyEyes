@@ -11,11 +11,12 @@ namespace Com.BeMyEyes.ShootingGame
     {
         private GameObject player;
         private GameObject spawnManager;
-        private GameObject restartButton;
         private ScoreManager scoreManager;
-        private GameObject[] green, blue, pink;
+        private GameObject[] blue, pink;
 
         private int viewID = 1000;
+
+        private bool _gameOver;
 
         private PhotonView playerPhoton;
 
@@ -25,10 +26,7 @@ namespace Com.BeMyEyes.ShootingGame
             player = GameObject.Find("Player");
             playerPhoton = player.GetComponent<PhotonView>();
             spawnManager = GameObject.Find("Spawn Manager");
-            restartButton = GameObject.Find("Restart");
             scoreManager = GameObject.Find("Score Manager").GetComponent<ScoreManager>();
-
-            restartButton.SetActive(false);
 
             if (SceneManager.GetActiveScene().name == "ShootingGame")
             {
@@ -44,21 +42,15 @@ namespace Com.BeMyEyes.ShootingGame
             if (PhotonNetwork.IsMasterClient)
             {
                 blue = GameObject.FindGameObjectsWithTag("Blue");
-                green = GameObject.FindGameObjectsWithTag("Green");
                 pink = GameObject.FindGameObjectsWithTag("Pink");
                 foreach (GameObject b in blue)
                 {
-                    if (b.GetComponent<Enemy>() != null)
+                    if (b.GetComponent<Enemy>() != null && !_gameOver)
                         b.GetComponent<SpriteRenderer>().enabled = false;
-                }
-                foreach (GameObject g in green)
-                {
-                    if (g.GetComponent<Enemy>() != null)
-                        g.GetComponent<SpriteRenderer>().enabled = false;
                 }
                 foreach (GameObject p in pink)
                 {
-                    if (p.GetComponent<Enemy>() != null)
+                    if (p.GetComponent<Enemy>() != null && !_gameOver)
                         p.GetComponent<SpriteRenderer>().enabled = false;
                 }
             }
@@ -66,6 +58,7 @@ namespace Com.BeMyEyes.ShootingGame
 
         public void gameOver()
         {
+            _gameOver = true;
             PhotonView photon;
             photon = PhotonView.Get(this);
             photon.RPC("GameOver", RpcTarget.AllViaServer, null);
@@ -79,11 +72,21 @@ namespace Com.BeMyEyes.ShootingGame
         [PunRPC]
         public void GameOver()
         {
-            player.SetActive(false);
+            player.GetComponent<Player>().enabled = false;
             spawnManager.SetActive(false);
-            if (PhotonNetwork.IsMasterClient)
-                restartButton.SetActive(true);
             scoreManager.gameOver();
+            blue = GameObject.FindGameObjectsWithTag("Blue");
+            pink = GameObject.FindGameObjectsWithTag("Pink");
+            foreach (GameObject b in blue)
+            {
+                b.GetComponent<SpriteRenderer>().enabled = true;
+                b.GetComponent<Enemy>().enabled = false;
+            }
+            foreach (GameObject p in pink)
+            {
+                p.GetComponent<SpriteRenderer>().enabled = true;
+                p.GetComponent<Enemy>().enabled = false;
+            }
         }
 
         public int setViewID()

@@ -19,8 +19,6 @@ namespace Com.BeMyEyes.RacingGame
         private bool _xMatch, _yMatch;
         private float _horizontalMove;
         public float speed = 5.0f;
-        public GameObject gameOver;
-        public GameObject restart;
         private GameObject[] obstacles;
         private bool _gameOver = false;
 
@@ -103,6 +101,7 @@ namespace Com.BeMyEyes.RacingGame
                 PhotonView photonView = PhotonView.Get(this);
                 collision.gameObject.GetComponent<SpriteRenderer>().enabled = true;
                 photonView.RPC("GameOver", RpcTarget.All, collision.gameObject.transform.position);
+                RestartManager.gameOver();
             }
         }
 
@@ -124,11 +123,6 @@ namespace Com.BeMyEyes.RacingGame
                 {
                     o.GetComponent<Obstacle>().see = true;
                     o.GetComponent<Obstacle>().speed = 0;
-                }
-                gameOver.SetActive(true);
-                if (PhotonNetwork.IsMasterClient)
-                {
-                    restart.SetActive(true);
                 }
             }
         }

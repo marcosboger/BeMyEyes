@@ -26,7 +26,11 @@ namespace Com.BeMyEyes.ShootingGame
         void Update()
         {
             if (transform.position.y < -4.5f)
+            {
                 GameObject.Find("Game Manager").GetComponent<GameManager>().gameOver();
+                if (PhotonNetwork.IsMasterClient)
+                    RestartManager.gameOver();
+            }
             timer += Time.deltaTime;
             if (timer >= waitTime)
             {
@@ -49,6 +53,8 @@ namespace Com.BeMyEyes.ShootingGame
             if (collision.gameObject.tag == "Player")
             {
                 Debug.Log("Collision!");
+                if(PhotonNetwork.IsMasterClient)
+                    RestartManager.gameOver();
                 GameObject.Find("Game Manager").GetComponent<GameManager>().gameOver();
             }
         }

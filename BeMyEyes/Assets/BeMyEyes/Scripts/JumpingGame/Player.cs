@@ -79,6 +79,7 @@ namespace Com.BeMyEyes.JumpingGame
                 gameObject.GetComponent<Player>().enabled = false;
                 JumpingSpawnManager.SetActive(false);
                 PhotonView photonView = PhotonView.Get(this);
+                RestartManager.gameOver();
                 photonView.RPC("GameOver", RpcTarget.All, gameObject.transform.position);
             }
         }

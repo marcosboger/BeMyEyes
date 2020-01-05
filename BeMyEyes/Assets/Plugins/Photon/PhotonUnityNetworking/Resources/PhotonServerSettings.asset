@@ -73,5 +73,6 @@ MonoBehaviour:
   - spawn9
   - shootMissile
   - takeDamage
+  - Score
   DisableAutoOpenWizard: 1
   ShowSettings: 1

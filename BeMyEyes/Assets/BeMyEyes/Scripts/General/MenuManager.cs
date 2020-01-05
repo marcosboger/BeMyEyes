@@ -13,6 +13,8 @@ public class MenuManager : MonoBehaviourPunCallbacks
     public GameObject _chooseNameMenu;
     public GameObject _menuBackground;
     public GameObject _mainMenu;
+    public GameObject _howToPlayMenu;
+    public GameObject _general, _racingGame, _jumpingGame, _colourGame, _shootingGame, _plantsVsEyes;
     public GameObject _optionsMenu;
     public GameObject _nameRoomMenu;
     public GameObject _roomMenu;
@@ -29,6 +31,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
     public Button _rightArrow;
     public Button _playGameSelection;
 
+    public Text _gameNameHowToPlay;
     public Text _roomNameText;
     public Text _player1Name;
     public Text _player2Name;
@@ -48,6 +51,13 @@ public class MenuManager : MonoBehaviourPunCallbacks
         _menuBackground.SetActive(true);
         _loadingScreen.SetActive(false);
         _mainMenu.SetActive(false);
+        _howToPlayMenu.SetActive(false);
+        _general.SetActive(false);
+        _racingGame.SetActive(false);
+        _jumpingGame.SetActive(false);
+        _colourGame.SetActive(false);
+        _shootingGame.SetActive(false);
+        _plantsVsEyes.SetActive(false);
         _optionsMenu.SetActive(false);
         _nameRoomMenu.SetActive(false);
         _roomMenu.SetActive(false);
@@ -121,6 +131,103 @@ public class MenuManager : MonoBehaviourPunCallbacks
     public void handleClickHowToPlay()
     {
         AudioManager.Instance.playSelectionClip();
+        _mainMenu.SetActive(false);
+        _howToPlayMenu.SetActive(true);
+        _general.SetActive(true);
+        _gameNameHowToPlay.text = "General";
+    }
+
+    public void handleClickLeftArrowHowToPlay()
+    {
+        if (_gameNameHowToPlay.text == "General")
+        {
+            _gameNameHowToPlay.text = "Plants Vs Eyes";
+            _general.SetActive(false);
+            _plantsVsEyes.SetActive(true);
+        }
+        else if (_gameNameHowToPlay.text == "Racing Game")
+        {
+            _gameNameHowToPlay.text = "General";
+            _racingGame.SetActive(false);
+            _general.SetActive(true);
+        }
+        else if (_gameNameHowToPlay.text == "Jumping Game")
+        {
+            _gameNameHowToPlay.text = "Racing Game";
+            _jumpingGame.SetActive(false);
+            _racingGame.SetActive(true);
+        }
+        else if (_gameNameHowToPlay.text == "Colour Game")
+        {
+            _gameNameHowToPlay.text = "Jumping Game";
+            _colourGame.SetActive(false);
+            _jumpingGame.SetActive(true);
+        }
+        else if (_gameNameHowToPlay.text == "Shooting Game")
+        {
+            _gameNameHowToPlay.text = "Colour Game";
+            _shootingGame.SetActive(false);
+            _colourGame.SetActive(true);
+        }
+        else if (_gameNameHowToPlay.text == "Plants Vs Eyes")
+        {
+            _gameNameHowToPlay.text = "Shooting Game";
+            _plantsVsEyes.SetActive(false);
+            _shootingGame.SetActive(true);
+        }
+    }
+
+    public void handleClickRightArrowHowToPlay()
+    {
+        if (_gameNameHowToPlay.text == "General")
+        {
+            _gameNameHowToPlay.text = "Racing Game";
+            _general.SetActive(false);
+            _racingGame.SetActive(true);
+        }
+        else if (_gameNameHowToPlay.text == "Racing Game")
+        {
+            _gameNameHowToPlay.text = "Jumping Game";
+            _racingGame.SetActive(false);
+            _jumpingGame.SetActive(true);
+        }
+        else if (_gameNameHowToPlay.text == "Jumping Game")
+        {
+            _gameNameHowToPlay.text = "Colour Game";
+            _jumpingGame.SetActive(false);
+            _colourGame.SetActive(true);
+        }
+        else if (_gameNameHowToPlay.text == "Colour Game")
+        {
+            _gameNameHowToPlay.text = "Shooting Game";
+            _colourGame.SetActive(false);
+            _shootingGame.SetActive(true);
+        }
+        else if (_gameNameHowToPlay.text == "Shooting Game")
+        {
+            _gameNameHowToPlay.text = "Plants Vs Eyes";
+            _shootingGame.SetActive(false);
+            _plantsVsEyes.SetActive(true);
+        }
+        else if (_gameNameHowToPlay.text == "Plants Vs Eyes")
+        {
+            _gameNameHowToPlay.text = "General";
+            _plantsVsEyes.SetActive(false);
+            _general.SetActive(true);
+        }
+    }
+
+    public void handleClickBackHowToPlay()
+    {
+        AudioManager.Instance.playSelectionClip();
+        _general.SetActive(false);
+        _racingGame.SetActive(false);
+        _jumpingGame.SetActive(false);
+        _colourGame.SetActive(false);
+        _shootingGame.SetActive(false);
+        _plantsVsEyes.SetActive(false);
+        _howToPlayMenu.SetActive(false);
+        _mainMenu.SetActive(true);
     }
 
     public void handleClickOptions()

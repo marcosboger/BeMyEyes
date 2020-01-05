@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -36,16 +37,33 @@ public class ScoreManager : MonoBehaviour
 
     public void gameOver()
     {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonView photonView = PhotonView.Get(this);
+            photonView.RPC("Score", RpcTarget.AllViaServer, score);
+        }
+        dead = true;
+    }
+
+    [PunRPC]
+    public void Score(int scoreReceived)
+    {
+        if(scoreReceived > score)
+        {
+            score = scoreReceived;
+            ScoreText.text = "Score: " + score;
+        }
+
         if (GeneralManager.Instance.gamePlayed == "Racing Game")
             GeneralManager.Instance.setRacingHighScore(score);
-       
+
         if (GeneralManager.Instance.gamePlayed == "Jumping Game")
             GeneralManager.Instance.setJumpingHighScore(score);
 
         if (GeneralManager.Instance.gamePlayed == "Shooting Game")
             GeneralManager.Instance.setShootingHighScore(score);
-        
 
-        dead = true;
+        if(GeneralManager.Instance.gamePlayed == "Plants Vs Eyes")
+            GeneralManager.Instance.setPlantsHighScore(score);
     }
 }

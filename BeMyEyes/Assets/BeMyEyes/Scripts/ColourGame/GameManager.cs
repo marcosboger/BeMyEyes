@@ -20,7 +20,6 @@ namespace Com.BeMyEyes.ColourGame
         public List<float> blinkWait = new List<float>();
         private List<int> usedcolors = new List<int>();
         public GameObject[] lights;
-        public GameObject text;
         public GameObject buttonsUI;
         private float waitTime = 2f;
         private float waiting = 1.5f;
@@ -37,7 +36,6 @@ namespace Com.BeMyEyes.ColourGame
         // Start is called before the first frame update
         void Start()
         {
-            text.SetActive(false);
             colorNames[0] = "blue";
             colorNames[1] = "green";
             colorNames[2] = "orange";
@@ -181,7 +179,6 @@ namespace Com.BeMyEyes.ColourGame
         {
             GeneralManager.Instance.setColourHighScore(score);
             buttonsUI.SetActive(false);
-            text.SetActive(true);
             if (PhotonNetwork.IsMasterClient)
             {
                 RestartManager.gameOver();

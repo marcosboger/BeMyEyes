@@ -58,10 +58,6 @@ namespace Com.BeMyEyes.RacingGame
             PhotonNetwork.LeaveRoom();
         }
 
-        public void BackToMenu()
-        {
-            SceneManager.LoadScene(0);
-        }
 
         
     }

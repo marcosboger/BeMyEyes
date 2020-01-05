@@ -25,7 +25,7 @@ public class RestartManager : MonoBehaviour
 
     public void onClickRestart()
     {
-        PhotonNetwork.LoadLevel(5);
+        PhotonNetwork.LoadLevel(6);
     }
 
     public void onClickBackToMenu()

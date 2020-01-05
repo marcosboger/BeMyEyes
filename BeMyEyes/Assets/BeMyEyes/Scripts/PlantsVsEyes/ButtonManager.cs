@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 namespace Com.BeMyEyes.PlantsVsEyes
 {
@@ -15,6 +16,13 @@ namespace Com.BeMyEyes.PlantsVsEyes
         private Touch touch;
 
         private Vector2 initialPosition;
+
+        private PhotonView photon;
+
+        private void Start()
+        {
+            photon = PhotonView.Get(this);
+        }
 
         void Update()
         {
@@ -67,36 +75,75 @@ namespace Com.BeMyEyes.PlantsVsEyes
         public void spawnPurpleBullet(Vector2 touchPosition)
         {
             if (touchPosition.x >= 0.1f && touchPosition.x <= 1.15f && touchPosition.y >= -3.5f)
-                Instantiate(purpleBullet, new Vector2(0.625f, -2.3f), Quaternion.identity);
+                photon.RPC("spawnPurple", RpcTarget.AllViaServer, 0);
             if (touchPosition.x >= -1.15f && touchPosition.x <= -0.1f && touchPosition.y >= -3.5f)
-                Instantiate(purpleBullet, new Vector2(-0.625f, -2.3f), Quaternion.identity);
+                photon.RPC("spawnPurple", RpcTarget.AllViaServer, 1);
             if (touchPosition.x >= 1.35 && touchPosition.x <= 2.4f && touchPosition.y >= -3.5f)
-                Instantiate(purpleBullet, new Vector2(1.875f, -2.3f), Quaternion.identity);
+                photon.RPC("spawnPurple", RpcTarget.AllViaServer, 2);
             if (touchPosition.x >= -2.4f && touchPosition.x <= -1.35f && touchPosition.y >= -3.5f)
+                photon.RPC("spawnPurple", RpcTarget.AllViaServer, 3);
+        }
+
+        [PunRPC]
+        public void spawnPurple(int position)
+        {
+            if(position == 0)
+                Instantiate(purpleBullet, new Vector2(0.625f, -2.3f), Quaternion.identity);
+            if(position == 1)
+                Instantiate(purpleBullet, new Vector2(-0.625f, -2.3f), Quaternion.identity);
+            if (position == 2)
+                Instantiate(purpleBullet, new Vector2(1.875f, -2.3f), Quaternion.identity);
+            if (position == 3)
                 Instantiate(purpleBullet, new Vector2(-1.875f, -2.3f), Quaternion.identity);
         }
 
         public void spawnRedBullet(Vector2 touchPosition)
         {
             if (touchPosition.x >= 0.1f && touchPosition.x <= 1.15f && touchPosition.y >= -3.5f)
-                Instantiate(redBullet, new Vector2(0.625f, -2.3f), Quaternion.identity);
+                photon.RPC("spawnRed", RpcTarget.AllViaServer, 0);
             if (touchPosition.x >= -1.15f && touchPosition.x <= -0.1f && touchPosition.y >= -3.5f)
-                Instantiate(redBullet, new Vector2(-0.625f, -2.3f), Quaternion.identity);
+                photon.RPC("spawnRed", RpcTarget.AllViaServer, 1);
             if (touchPosition.x >= 1.35 && touchPosition.x <= 2.4f && touchPosition.y >= -3.5f)
-                Instantiate(redBullet, new Vector2(1.875f, -2.3f), Quaternion.identity);
+                photon.RPC("spawnRed", RpcTarget.AllViaServer, 2);
             if (touchPosition.x >= -2.4f && touchPosition.x <= -1.35f && touchPosition.y >= -3.5f)
+                photon.RPC("spawnRed", RpcTarget.AllViaServer, 3);
+        }
+
+        [PunRPC]
+        public void spawnRed(int position)
+        {
+            if (position == 0)
+                Instantiate(redBullet, new Vector2(0.625f, -2.3f), Quaternion.identity);
+            if (position == 1)
+                Instantiate(redBullet, new Vector2(-0.625f, -2.3f), Quaternion.identity);
+            if (position == 2)
+                Instantiate(redBullet, new Vector2(1.875f, -2.3f), Quaternion.identity);
+            if (position == 3)
                 Instantiate(redBullet, new Vector2(-1.875f, -2.3f), Quaternion.identity);
         }
 
         public void spawnYellowBullet(Vector2 touchPosition)
         {
             if (touchPosition.x >= 0.1f && touchPosition.x <= 1.15f && touchPosition.y >= -3.5f)
-                Instantiate(yellowBullet, new Vector2(0.625f, -2.3f), Quaternion.identity);
+                photon.RPC("spawnYellow", RpcTarget.AllViaServer, 0);
             if (touchPosition.x >= -1.15f && touchPosition.x <= -0.1f && touchPosition.y >= -3.5f)
-                Instantiate(yellowBullet, new Vector2(-0.625f, -2.3f), Quaternion.identity);
+                photon.RPC("spawnYellow", RpcTarget.AllViaServer, 1);
             if (touchPosition.x >= 1.35 && touchPosition.x <= 2.4f && touchPosition.y >= -3.5f)
-                Instantiate(yellowBullet, new Vector2(1.875f, -2.3f), Quaternion.identity);
+                photon.RPC("spawnYellow", RpcTarget.AllViaServer, 2);
             if (touchPosition.x >= -2.4f && touchPosition.x <= -1.35f && touchPosition.y >= -3.5f)
+                photon.RPC("spawnYellow", RpcTarget.AllViaServer, 3);
+        }
+
+        [PunRPC]
+        public void spawnYellow(int position)
+        {
+            if (position == 0)
+                Instantiate(yellowBullet, new Vector2(0.625f, -2.3f), Quaternion.identity);
+            if (position == 1)
+                Instantiate(yellowBullet, new Vector2(-0.625f, -2.3f), Quaternion.identity);
+            if (position == 2)
+                Instantiate(yellowBullet, new Vector2(1.875f, -2.3f), Quaternion.identity);
+            if (position == 3)
                 Instantiate(yellowBullet, new Vector2(-1.875f, -2.3f), Quaternion.identity);
         }
     }

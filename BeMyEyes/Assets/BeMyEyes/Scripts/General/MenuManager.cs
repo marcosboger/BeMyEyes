@@ -100,6 +100,8 @@ public class MenuManager : MonoBehaviourPunCallbacks
                 _highScore.text = GeneralManager.Instance.colourGameHighScore.ToString();
             if (GeneralManager.Instance.gamePlayed == "Shooting Game")
                 _highScore.text = GeneralManager.Instance.shootingGameHighScore.ToString();
+            if (GeneralManager.Instance.gamePlayed == "Plants Vs Eyes")
+                _highScore.text = GeneralManager.Instance.plantsHighScore.ToString();
         }
     }
 
@@ -343,6 +345,11 @@ public class MenuManager : MonoBehaviourPunCallbacks
         else if(_gameName.text == "Shooting Game")
         {
             PhotonView photonView = PhotonView.Get(this);
+            photonView.RPC("setGame", RpcTarget.All, "Plants Vs Eyes");
+        }
+        else if (_gameName.text == "Plants Vs Eyes")
+        {
+            PhotonView photonView = PhotonView.Get(this);
             photonView.RPC("setGame", RpcTarget.All, "Racing Game");
         }
     }
@@ -352,7 +359,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
         if (_gameName.text == "Racing Game")
         {
             PhotonView photonView = PhotonView.Get(this);
-            photonView.RPC("setGame", RpcTarget.All, "Shooting Game");
+            photonView.RPC("setGame", RpcTarget.All, "Plants Vs Eyes");
         }
         else if (_gameName.text == "Jumping Game")
         {
@@ -368,6 +375,11 @@ public class MenuManager : MonoBehaviourPunCallbacks
         {
             PhotonView photonView = PhotonView.Get(this);
             photonView.RPC("setGame", RpcTarget.All, "Colour Game");
+        }
+        else if (_gameName.text == "Plants Vs Eyes")
+        {
+            PhotonView photonView = PhotonView.Get(this);
+            photonView.RPC("setGame", RpcTarget.All, "Shooting Game");
         }
     }
 
@@ -388,6 +400,10 @@ public class MenuManager : MonoBehaviourPunCallbacks
         else if(GeneralManager.Instance.gamePlayed == "Shooting Game")
         {
             PhotonNetwork.LoadLevel("ShootingGame");
+        }
+        else if (GeneralManager.Instance.gamePlayed == "Plants Vs Eyes")
+        {
+            PhotonNetwork.LoadLevel("PlantsVsEyes");
         }
     }
 
@@ -479,6 +495,8 @@ public class MenuManager : MonoBehaviourPunCallbacks
             _highScore.text = GeneralManager.Instance.colourGameHighScore.ToString();
         if (gameName == "Shooting Game")
             _highScore.text = GeneralManager.Instance.shootingGameHighScore.ToString();
+        if (gameName == "Plants Vs Eyes")
+            _highScore.text = GeneralManager.Instance.plantsHighScore.ToString();
     }
 
     [PunRPC]

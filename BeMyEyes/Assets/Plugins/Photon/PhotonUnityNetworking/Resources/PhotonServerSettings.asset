@@ -74,5 +74,9 @@ MonoBehaviour:
   - shootMissile
   - takeDamage
   - Score
+  - Spawn
+  - spawnPurple
+  - spawnRed
+  - spawnYellow
   DisableAutoOpenWizard: 1
   ShowSettings: 1

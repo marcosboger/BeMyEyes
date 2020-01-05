@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/BeMyEyes/Scenes/Games/ShootingGame.unity
     guid: 30efc15dce228a44d9c42cbafbe7e47d
-  - enabled: 0
+  - enabled: 1
     path: Assets/BeMyEyes/Scenes/Games/PlantsVsEyes.unity
     guid: 9c70e1733fbf83147821dec5a2804b57
   - enabled: 1

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 namespace Com.BeMyEyes.PlantsVsEyes
 {
@@ -13,10 +14,20 @@ namespace Com.BeMyEyes.PlantsVsEyes
         float waitTime = 1f;
         float totalTimer = 0f;
         int _randomEnemy, _randomType;
+        PhotonView photon;
+
+        public void Start()
+        {
+            photon = PhotonView.Get(this);
+        }
 
         // Update is called once per frame
         void Update()
         {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                return;
+            }
             totalTimer += Time.deltaTime;
             timer += Time.deltaTime;
             if(totalTimer <= 10f)
@@ -55,39 +66,45 @@ namespace Com.BeMyEyes.PlantsVsEyes
                 waitTime = 0.5f;
             }
 
-            if (_randomEnemy == 0)
+
+            if (timer >= waitTime)
+            {
+                photon.RPC("Spawn", RpcTarget.AllViaServer, _randomEnemy, _randomType);
+                timer = 0f;
+            }
+        }
+
+        [PunRPC]
+        public void Spawn(int randomEnemy, int randomType)
+        {
+            if (randomEnemy == 0)
             {
                 enemy = purpleEnemy;
             }
-            else if(_randomEnemy == 1)
+            else if (randomEnemy == 1)
             {
                 enemy = redEnemy;
             }
-            else if(_randomEnemy == 2)
+            else if (randomEnemy == 2)
             {
                 enemy = yellowEnemy;
             }
 
-
-            if (timer >= waitTime)
+            if (randomType == 0)
             {
-                if (_randomType == 0)
-                {
-                    Instantiate(enemy, new Vector3(0.625f, 5.6f, -1), Quaternion.identity);
-                }
-                else if (_randomType == 1)
-                {
-                    Instantiate(enemy, new Vector3(1.875f, 5.6f, -1), Quaternion.identity);
-                }
-                else if (_randomType == 2)
-                {
-                    Instantiate(enemy, new Vector3(-0.625f, 5.6f, -1), Quaternion.identity);
-                }
-                else if (_randomType == 3)
-                {
-                    Instantiate(enemy, new Vector3(-1.875f, 5.6f, -1), Quaternion.identity);
-                }
-                timer = 0f;
+                Instantiate(enemy, new Vector3(0.625f, 5.6f, -1), Quaternion.identity);
+            }
+            else if (randomType == 1)
+            {
+                Instantiate(enemy, new Vector3(1.875f, 5.6f, -1), Quaternion.identity);
+            }
+            else if (randomType == 2)
+            {
+                Instantiate(enemy, new Vector3(-0.625f, 5.6f, -1), Quaternion.identity);
+            }
+            else if (randomType == 3)
+            {
+                Instantiate(enemy, new Vector3(-1.875f, 5.6f, -1), Quaternion.identity);
             }
         }
     }

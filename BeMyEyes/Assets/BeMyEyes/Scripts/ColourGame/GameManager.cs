@@ -13,9 +13,9 @@ namespace Com.BeMyEyes.ColourGame
         private List<float> blinkers = new List<float>();
         private List<bool> enableTimers = new List<bool>();
         public List<Color> colors = new List<Color>();
-        private string[] colorNames = new string[7];
-        private string[] myColors = new string[7];
-        private string[] yourColors = new string[7];
+        private string[] colorNames = new string[8];
+        private string[] myColors = new string[8];
+        private string[] yourColors = new string[8];
         public List<Button> buttons = new List<Button>();
         public List<float> blinkWait = new List<float>();
         private List<int> usedcolors = new List<int>();
@@ -33,6 +33,7 @@ namespace Com.BeMyEyes.ColourGame
         Color orange = new Color(1, 0.4541185f, 0, 1);
         Color pink = new Color(1, 0.4386f, 0.9068f, 1);
         Color purple = new Color(0.492f, 0, 1, 1);
+        Color brown = new Color(0.5f, 0.1861f, 0, 1);
         // Start is called before the first frame update
         void Start()
         {
@@ -43,6 +44,7 @@ namespace Com.BeMyEyes.ColourGame
             colorNames[4] = "purple";
             colorNames[5] = "red";
             colorNames[6] = "yellow";
+            colorNames[7] = "white";
             colors.Add(Color.blue);
             colors.Add(Color.green);
             colors.Add(orange);
@@ -50,7 +52,8 @@ namespace Com.BeMyEyes.ColourGame
             colors.Add(purple);
             colors.Add(Color.red);
             colors.Add(Color.yellow);
-            for (int i = 0; i < 7; i++)
+            colors.Add(brown);
+            for (int i = 0; i < 8; i++)
             {
                 while (!podepa)
                 {
@@ -61,7 +64,7 @@ namespace Com.BeMyEyes.ColourGame
                         if (random == usedcolors[z])
                             podepa = false;
                     }
-                    if (random == i && i != 6)
+                    if (random == i && i != 7)
                         podepa = false;
                 }
                 usedcolors.Add(random);
@@ -101,12 +104,12 @@ namespace Com.BeMyEyes.ColourGame
                 waiting += Time.deltaTime;
                 if (waiting >= waitTime && blinkingLights < 3)
                 {
-                    _random = Random.Range(0, 7);
+                    _random = Random.Range(0, 8);
                     if (!enableTimers[_random])
                     {
                         blinkingLights++;
                         enableTimers[_random] = true;
-                        if (waitTime > 1.8f)
+                        if (waitTime > 1.2f)
                             waitTime -= 0.03f;
                         waiting = 0;
                         timers[_random] = 0;
@@ -142,6 +145,10 @@ namespace Com.BeMyEyes.ColourGame
                 if (enableTimers[6])
                 {
                     manageTimer(6);
+                }
+                if (enableTimers[7])
+                {
+                    manageTimer(7);
                 }
                 #endregion
             }
@@ -191,7 +198,7 @@ namespace Com.BeMyEyes.ColourGame
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                for (int j = 0; j < 7; j++)
+                for (int j = 0; j < 8; j++)
                 {
                     if (myColors[0] == yourColors[j])
                     {
@@ -222,7 +229,7 @@ namespace Com.BeMyEyes.ColourGame
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                for (int j = 0; j < 7; j++)
+                for (int j = 0; j < 8; j++)
                 {
                     if (myColors[1] == yourColors[j])
                     {
@@ -253,7 +260,7 @@ namespace Com.BeMyEyes.ColourGame
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                for (int j = 0; j < 7; j++)
+                for (int j = 0; j < 8; j++)
                 {
                     if (myColors[2] == yourColors[j])
                     {
@@ -284,7 +291,7 @@ namespace Com.BeMyEyes.ColourGame
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                for (int j = 0; j < 7; j++)
+                for (int j = 0; j < 8; j++)
                 {
                     if (myColors[3] == yourColors[j])
                     {
@@ -315,7 +322,7 @@ namespace Com.BeMyEyes.ColourGame
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                for (int j = 0; j < 7; j++)
+                for (int j = 0; j < 8; j++)
                 {
                     if (myColors[4] == yourColors[j])
                     {
@@ -346,7 +353,7 @@ namespace Com.BeMyEyes.ColourGame
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                for (int j = 0; j < 7; j++)
+                for (int j = 0; j < 8; j++)
                 {
                     if (myColors[5] == yourColors[j])
                     {
@@ -377,7 +384,7 @@ namespace Com.BeMyEyes.ColourGame
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                for (int j = 0; j < 7; j++)
+                for (int j = 0; j < 8; j++)
                 {
                     if (myColors[6] == yourColors[j])
                     {
@@ -392,6 +399,37 @@ namespace Com.BeMyEyes.ColourGame
                 {
                     enableTimers[6] = false;
                     buttons[6].transform.Find("Light").GetComponent<Image>().color = Color.white;
+                    blinkingLights--;
+                    PhotonView photonView = PhotonView.Get(this);
+                    photonView.RPC("addScore", RpcTarget.All, null);
+                }
+                else
+                {
+                    PhotonView photonView = PhotonView.Get(this);
+                    photonView.RPC("gameOver", RpcTarget.All, null);
+                }
+            }
+        }
+        [PunRPC]
+        public void buttonPress7()
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if (myColors[7] == yourColors[j])
+                    {
+                        PhotonView photonView = PhotonView.Get(this);
+                        photonView.RPC("buttonPress" + j, RpcTarget.Others, null);
+                    }
+                }
+            }
+            else
+            {
+                if (enableTimers[7])
+                {
+                    enableTimers[7] = false;
+                    buttons[7].transform.Find("Light").GetComponent<Image>().color = Color.white;
                     blinkingLights--;
                     PhotonView photonView = PhotonView.Get(this);
                     photonView.RPC("addScore", RpcTarget.All, null);

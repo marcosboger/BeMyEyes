@@ -21,7 +21,7 @@ namespace Com.BeMyEyes.ColourGame
         private List<int> usedcolors = new List<int>();
         public GameObject[] lights;
         public GameObject buttonsUI;
-        private float waitTime = 4f;
+        private float waitTime = 3f;
         private float waiting = 1.5f;
         private int _random;
         private bool podepa = false;
@@ -102,7 +102,7 @@ namespace Com.BeMyEyes.ColourGame
             if (!PhotonNetwork.IsMasterClient)
             {
                 waiting += Time.deltaTime;
-                if (waiting >= waitTime && blinkingLights < 3)
+                if (waiting >= waitTime && blinkingLights < 4)
                 {
                     _random = Random.Range(0, 8);
                     if (!enableTimers[_random])
@@ -110,7 +110,7 @@ namespace Com.BeMyEyes.ColourGame
                         blinkingLights++;
                         enableTimers[_random] = true;
                         if (waitTime > 1.2f)
-                            waitTime -= 0.035f;
+                            waitTime -= 0.05f;
                         waiting = 0;
                         timers[_random] = 0;
                         blinkers[_random] = 0;

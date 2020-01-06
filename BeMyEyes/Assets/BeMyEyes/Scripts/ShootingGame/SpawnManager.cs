@@ -66,7 +66,7 @@ namespace Com.BeMyEyes.ShootingGame
                     }
                     else if (allTimer > 180 && allTimer < 500)
                     {
-                        _random = Random.Range(3, 21);
+                        _random = Random.Range(3, 11);
                         _randomEnemy = Random.Range(0, 2);
                     }
                     else

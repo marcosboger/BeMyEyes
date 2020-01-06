@@ -110,7 +110,7 @@ namespace Com.BeMyEyes.ColourGame
                         blinkingLights++;
                         enableTimers[_random] = true;
                         if (waitTime > 1.2f)
-                            waitTime -= 0.03f;
+                            waitTime -= 0.035f;
                         waiting = 0;
                         timers[_random] = 0;
                         blinkers[_random] = 0;

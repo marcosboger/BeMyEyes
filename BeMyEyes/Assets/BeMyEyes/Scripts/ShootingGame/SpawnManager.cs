@@ -49,9 +49,29 @@ namespace Com.BeMyEyes.ShootingGame
                         _random = Random.Range(0, 8);
                         _randomEnemy = Random.Range(0, 2);
                     }
-                    else
+                    else if (allTimer > 90f && allTimer < 120f)
                     {
                         _random = Random.Range(0, 9);
+                        _randomEnemy = Random.Range(0, 2);
+                    }
+                    else if (allTimer > 120f && allTimer < 150f)
+                    {
+                        _random = Random.Range(0, 10);
+                        _randomEnemy = Random.Range(0, 2);
+                    }
+                    else if (allTimer > 150 && allTimer < 180)
+                    {
+                        _random = Random.Range(0, 11);
+                        _randomEnemy = Random.Range(0, 2);
+                    }
+                    else if (allTimer > 180 && allTimer < 500)
+                    {
+                        _random = Random.Range(3, 21);
+                        _randomEnemy = Random.Range(0, 2);
+                    }
+                    else
+                    {
+                        _random = Random.Range(5, 11);
                         _randomEnemy = Random.Range(0, 2);
                     }
                     if (_random == 0)
@@ -107,6 +127,18 @@ namespace Com.BeMyEyes.ShootingGame
                         PhotonView photon;
                         photon = PhotonView.Get(this);
                         photon.RPC("spawn8", RpcTarget.AllViaServer, _randomEnemy);
+                    }
+                    if (_random == 9)
+                    {
+                        PhotonView photon;
+                        photon = PhotonView.Get(this);
+                        photon.RPC("spawn9", RpcTarget.AllViaServer, _randomEnemy);
+                    }
+                    if (_random == 10)
+                    {
+                        PhotonView photon;
+                        photon = PhotonView.Get(this);
+                        photon.RPC("spawn10", RpcTarget.AllViaServer, _randomEnemy);
                     }
                     timer = 0;
                 }
@@ -236,6 +268,27 @@ namespace Com.BeMyEyes.ShootingGame
                 Instantiate(UFO, new Vector3(+2, 5, 0), Quaternion.identity);
                 Instantiate(UFO, new Vector3(+1, 5, 0), Quaternion.identity);
                 Instantiate(UFO, new Vector3(0, 5, 0), Quaternion.identity);
+            }
+        }
+
+        [PunRPC]
+        public void spawn10(int enemy)
+        {
+            if (enemy == 0)
+            {
+                Instantiate(blueEnemy, new Vector3(+2, 5, 0), Quaternion.identity);
+                Instantiate(blueEnemy, new Vector3(+1, 5, 0), Quaternion.identity);
+                Instantiate(blueEnemy, new Vector3(0, 5, 0), Quaternion.identity);
+                Instantiate(blueEnemy, new Vector3(-1, 5, 0), Quaternion.identity);
+                Instantiate(blueEnemy, new Vector3(-2, 5, 0), Quaternion.identity);
+            }
+            if (enemy == 1)
+            {
+                Instantiate(UFO, new Vector3(+2, 5, 0), Quaternion.identity);
+                Instantiate(UFO, new Vector3(+1, 5, 0), Quaternion.identity);
+                Instantiate(UFO, new Vector3(0, 5, 0), Quaternion.identity);
+                Instantiate(UFO, new Vector3(-1, 5, 0), Quaternion.identity);
+                Instantiate(UFO, new Vector3(-2, 5, 0), Quaternion.identity);
             }
         }
     }

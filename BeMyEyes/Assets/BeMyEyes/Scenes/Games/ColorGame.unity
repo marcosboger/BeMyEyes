@@ -914,6 +914,7 @@ MonoBehaviour:
   - {fileID: 2032399529}
   - {fileID: 1871451232}
   - {fileID: 1369776705}
+  - {fileID: 1206934192}
   buttonsUI: {fileID: 1998881687}
   ScoreText: {fileID: 1334815811}
 --- !u!4 &885893987

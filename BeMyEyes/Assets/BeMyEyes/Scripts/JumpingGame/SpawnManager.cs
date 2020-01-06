@@ -16,6 +16,7 @@ namespace Com.BeMyEyes.JumpingGame
 
         private float _random;
         private float timer = 0;
+        private float totalTimer = 0;
         private float waitTime = -1;
         private bool _gameOver = false;
         private float multiplier = 1f;
@@ -36,9 +37,19 @@ namespace Com.BeMyEyes.JumpingGame
             else
             {
                 timer += multiplier * Time.deltaTime;
+                totalTimer += Time.deltaTime;
                 if (timer >= waitTime)
                 {
-                    _random = Random.Range(0, 9);
+
+                    if (totalTimer < 15f)
+                        _random = Random.Range(0, 3);
+                    else if (totalTimer > 15f && totalTimer < 30f)
+                        _random = Random.Range(0, 5);
+                    else if (totalTimer > 30f && totalTimer < 60f)
+                        _random = Random.Range(0, 7);
+                    else
+                        _random = Random.Range(0, 9);
+
                     if (multiplier <= 1.5f)
                         multiplier += 0.02f;
                     if (_random == 0)
@@ -75,7 +86,7 @@ namespace Com.BeMyEyes.JumpingGame
                         //PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(6.01f, -3.48f, 0), Quaternion.identity);
                         //PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(6.50f, -3.48f, 0), Quaternion.identity);
                         //PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(6.99f, -3.48f, 0), Quaternion.identity);
-                        waitTime = 3.4f;
+                        waitTime = 3f;
                     }
                     if (_random == 3)
                     {
@@ -90,7 +101,7 @@ namespace Com.BeMyEyes.JumpingGame
                         //PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(4.05f, -3.48f, 0), Quaternion.identity);
                         //PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(4.54f, -3.48f, 0), Quaternion.identity);
                         //PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(5.03f, -3.48f, 0), Quaternion.identity);
-                        waitTime = 3f;
+                        waitTime = 3.4f;
                     }
                     if (_random == 4)
                     {
@@ -132,7 +143,7 @@ namespace Com.BeMyEyes.JumpingGame
                         //PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(12.87f, -3.48f, 0), Quaternion.identity);
                         //PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(13.36f, -3.48f, 0), Quaternion.identity);
                         //PhotonNetwork.Instantiate("ObstacleJumping", new Vector3(13.85f, -3.48f, 0), Quaternion.identity);
-                        waitTime = 6.4f * multiplier;
+                        waitTime = 2.5f * multiplier + 1.5f;
                     }
                     if (_random == 5)
                     {
@@ -160,7 +171,7 @@ namespace Com.BeMyEyes.JumpingGame
                         PhotonView photonView = PhotonView.Get(this);
                         photonView.RPC("Spawn9", RpcTarget.AllViaServer, null);
                         //PhotonNetwork.Instantiate("ObstacleJumping4", new Vector3(0, 0, 0), Quaternion.identity);
-                        waitTime = 2.5f * multiplier + 1.5f;
+                        waitTime = 6.4f * multiplier;
                     }
                     timer = 0;
                 }
@@ -180,10 +191,12 @@ namespace Com.BeMyEyes.JumpingGame
         [PunRPC]
         public void Spawn2()
         {
+            Instantiate(platform, new Vector3(3.07f, -2.75f, 0), Quaternion.identity);
+            Instantiate(platform, new Vector3(3.56f, -2.75f, 0), Quaternion.identity);
             Instantiate(obstacleJumping, new Vector3(3.07f, -3.48f, 0), Quaternion.identity);
         }
         [PunRPC]
-        public void Spawn3()
+        public void Spawn4()
         {
             Instantiate(platform, new Vector3(3.07f, -2.75f, 0), Quaternion.identity);
             Instantiate(platform, new Vector3(3.56f, -2.75f, 0), Quaternion.identity);
@@ -203,7 +216,7 @@ namespace Com.BeMyEyes.JumpingGame
             Instantiate(obstacleJumping, new Vector3(6.99f, -3.48f, 0), Quaternion.identity);
         }
         [PunRPC]
-        public void Spawn4()
+        public void Spawn3()
         {
             Instantiate(platform, new Vector3(3.07f, -2.75f, 0), Quaternion.identity);
             Instantiate(platform, new Vector3(3.56f, -2.75f, 0), Quaternion.identity);
@@ -213,11 +226,9 @@ namespace Com.BeMyEyes.JumpingGame
             Instantiate(obstacleJumping, new Vector3(3.07f, -3.48f, 0), Quaternion.identity);
             Instantiate(obstacleJumping, new Vector3(3.56f, -3.48f, 0), Quaternion.identity);
             Instantiate(obstacleJumping, new Vector3(4.05f, -3.48f, 0), Quaternion.identity);
-            Instantiate(obstacleJumping, new Vector3(4.54f, -3.48f, 0), Quaternion.identity);
-            Instantiate(obstacleJumping, new Vector3(5.03f, -3.48f, 0), Quaternion.identity);
         }
         [PunRPC]
-        public void Spawn5()
+        public void Spawn9()
         {
             Instantiate(platform, new Vector3(3.07f, -2.75f, 0),  Quaternion.identity);
             Instantiate(platform, new Vector3(3.56f, -2.75f, 0),  Quaternion.identity);
@@ -309,7 +320,7 @@ namespace Com.BeMyEyes.JumpingGame
             Instantiate(obstacleJumping3, new Vector3(0f, 0f, 0), Quaternion.identity);
         }
         [PunRPC]
-        public void Spawn9()
+        public void Spawn5()
         {
             Instantiate(obstacleJumping4, new Vector3(0f, 0f, 0), Quaternion.identity);
         }

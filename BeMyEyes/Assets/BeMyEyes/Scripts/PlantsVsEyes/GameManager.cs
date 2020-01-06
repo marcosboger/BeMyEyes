@@ -59,7 +59,8 @@ namespace Com.BeMyEyes.PlantsVsEyes
             _gameOver = true;
             GameObject.Find("Spawn Manager").GetComponent<SpawnManager>().enabled = false;
             GameObject.Find("Button Manager").GetComponent<ButtonManager>().enabled = false;
-            RestartManager.gameOver();
+            if(PhotonNetwork.IsMasterClient)
+                RestartManager.gameOver();
             GameObject.Find("Score Manager").GetComponent<ScoreManager>().gameOver();
             purple = GameObject.FindGameObjectsWithTag("Purple");
             red = GameObject.FindGameObjectsWithTag("Red");

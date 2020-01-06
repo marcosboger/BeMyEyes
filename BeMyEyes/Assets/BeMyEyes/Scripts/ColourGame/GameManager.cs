@@ -21,7 +21,7 @@ namespace Com.BeMyEyes.ColourGame
         private List<int> usedcolors = new List<int>();
         public GameObject[] lights;
         public GameObject buttonsUI;
-        private float waitTime = 2f;
+        private float waitTime = 4f;
         private float waiting = 1.5f;
         private int _random;
         private bool podepa = false;
@@ -106,8 +106,8 @@ namespace Com.BeMyEyes.ColourGame
                     {
                         blinkingLights++;
                         enableTimers[_random] = true;
-                        if (waitTime > 1f)
-                            waitTime -= 0.1f;
+                        if (waitTime > 1.8f)
+                            waitTime -= 0.03f;
                         waiting = 0;
                         timers[_random] = 0;
                         blinkers[_random] = 0;
@@ -160,17 +160,18 @@ namespace Com.BeMyEyes.ColourGame
                 else if (buttons[j].transform.Find("Light").GetComponent<Image>().color == Color.red)
                 {
                     buttons[j].transform.Find("Light").GetComponent<Image>().color = Color.white;
-                    if (blinkWait[j] > 0.17f)
+                    if (blinkWait[j] > 0.2f)
                     {
-                        blinkWait[j] -= 0.1f;
+                        blinkWait[j] -= 0.092f;
                     }
                 }
                 blinkers[j] = 0;
             }
-            if (timers[j] > 5.0f)
+            if (timers[j] > 8.0f)
             {
                 PhotonView photonView = PhotonView.Get(this);
                 photonView.RPC("gameOver", RpcTarget.All, null);
+                Debug.Log("Perdeu");
             }
 
         }

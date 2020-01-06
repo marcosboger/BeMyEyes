@@ -178,7 +178,6 @@ namespace Com.BeMyEyes.ColourGame
             {
                 PhotonView photonView = PhotonView.Get(this);
                 photonView.RPC("gameOver", RpcTarget.All, null);
-                Debug.Log("Perdeu");
             }
 
         }

@@ -75,6 +75,7 @@ namespace Com.BeMyEyes.ShootingGame
         [PunRPC]
         public void GameOver()
         {
+            RestartManager._gameOver.SetActive(true);
             player.GetComponent<Player>().enabled = false;
             spawnManager.SetActive(false);
             scoreManager.gameOver();

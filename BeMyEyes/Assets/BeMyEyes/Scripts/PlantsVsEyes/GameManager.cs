@@ -56,6 +56,7 @@ namespace Com.BeMyEyes.PlantsVsEyes
         [PunRPC]
         public void GameOver()
         {
+            RestartManager._gameOver.SetActive(true);
             _gameOver = true;
             GameObject.Find("Spawn Manager").GetComponent<SpawnManager>().enabled = false;
             GameObject.Find("Button Manager").GetComponent<ButtonManager>().enabled = false;

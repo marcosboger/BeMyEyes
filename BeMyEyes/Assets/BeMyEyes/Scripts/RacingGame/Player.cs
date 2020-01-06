@@ -110,6 +110,7 @@ namespace Com.BeMyEyes.RacingGame
         {
             if (!_gameOver)
             {
+                RestartManager._gameOver.SetActive(true);
                 scoreScript.gameOver();
                 _gameOver = true;
                 gameObject.GetComponent<Player>().enabled = false;

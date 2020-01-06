@@ -6,7 +6,7 @@ namespace Com.BeMyEyes.PlantsVsEyes
 {
     public class Bullet : MonoBehaviour
     {
-        private float _speed = 6.0f;
+        private float _speed = 4.0f;
 
         // Update is called once per frame
         void Update()

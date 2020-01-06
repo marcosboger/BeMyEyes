@@ -184,6 +184,7 @@ namespace Com.BeMyEyes.ColourGame
         [PunRPC]
         void gameOver()
         {
+            RestartManager._gameOver.SetActive(true);
             GeneralManager.Instance.setColourHighScore(score);
             buttonsUI.SetActive(false);
             if (PhotonNetwork.IsMasterClient)

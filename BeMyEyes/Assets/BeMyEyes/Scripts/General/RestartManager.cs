@@ -8,11 +8,14 @@ public class RestartManager : MonoBehaviour
 {
     private static GameObject _restartButton;
     private static GameObject _backToMenuButton;
+    public static GameObject _gameOver;
 
     void Start()
     {
         _restartButton = GameObject.Find("Restart");
         _backToMenuButton = GameObject.Find("Back To Menu");
+        _gameOver = GameObject.Find("Game Over");
+        _gameOver.SetActive(false);
         _restartButton.SetActive(false);
         _backToMenuButton.SetActive(false);
     }

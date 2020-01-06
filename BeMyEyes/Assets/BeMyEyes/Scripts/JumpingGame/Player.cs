@@ -95,6 +95,7 @@ namespace Com.BeMyEyes.JumpingGame
         {
             if (!_gameOver)
             {
+                RestartManager._gameOver.SetActive(true);
                 scoreScript.gameOver();
                 _gameOver = true;
                 gameObject.GetComponent<Player>().enabled = false;

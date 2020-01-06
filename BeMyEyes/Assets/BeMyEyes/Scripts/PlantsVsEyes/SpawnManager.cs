@@ -11,7 +11,7 @@ namespace Com.BeMyEyes.PlantsVsEyes
         private GameObject purpleEnemy, redEnemy, yellowEnemy;
         private GameObject enemy;
         float timer = 0f;
-        float waitTime = 1f;
+        float waitTime = 1.5f;
         float totalTimer = 0f;
         int _randomEnemy, _randomType;
         PhotonView photon;
@@ -48,24 +48,33 @@ namespace Com.BeMyEyes.PlantsVsEyes
 
             if(totalTimer >= 40)
             {
-                waitTime = 0.8f;
+                waitTime = 1.2f;
             }
 
             if (totalTimer >= 50)
             {
-                waitTime = 0.7f;
+                waitTime = 1.0f;
             }
 
             if (totalTimer >= 60)
             {
-                waitTime = 0.6f;
+                waitTime = 0.8f;
             }
 
             if (totalTimer >= 70)
             {
-                waitTime = 0.5f;
+                waitTime = 0.7f;
             }
 
+            if (totalTimer >= 90)
+            {
+                waitTime = 0.6f;
+            }
+
+            if (totalTimer >= 120)
+            {
+                waitTime = 0.5f;
+            }
 
             if (timer >= waitTime)
             {

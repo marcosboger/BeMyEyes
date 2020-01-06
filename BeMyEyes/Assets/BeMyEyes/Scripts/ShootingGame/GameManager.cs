@@ -14,6 +14,8 @@ namespace Com.BeMyEyes.ShootingGame
         private ScoreManager scoreManager;
         private GameObject[] blue, pink;
 
+        public float totalTimer = 0f;
+
         private int viewID = 1000;
 
         private bool _gameOver;
@@ -39,6 +41,7 @@ namespace Com.BeMyEyes.ShootingGame
 
         private void Update()
         {
+            totalTimer += Time.deltaTime;
             if (PhotonNetwork.IsMasterClient)
             {
                 blue = GameObject.FindGameObjectsWithTag("Blue");

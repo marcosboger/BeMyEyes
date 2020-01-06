@@ -15,11 +15,13 @@ namespace Com.BeMyEyes.ShootingGame
         private int hp = 3;
         private Color _color;
         private PhotonView photon;
+        private GameManager gameManager;
 
         private void Start()
         {
+            gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
             photon = PhotonView.Get(this);
-            photon.ViewID = GameObject.Find("Game Manager").GetComponent<GameManager>().setViewID();
+            photon.ViewID = gameManager.setViewID();
         }
 
         // Update is called once per frame
@@ -27,7 +29,7 @@ namespace Com.BeMyEyes.ShootingGame
         {
             if (transform.position.y < -4.5f)
             {
-                GameObject.Find("Game Manager").GetComponent<GameManager>().gameOver();
+                gameManager.gameOver();
                 if (PhotonNetwork.IsMasterClient)
                     RestartManager.gameOver();
             }
@@ -36,6 +38,26 @@ namespace Com.BeMyEyes.ShootingGame
             {
                 transform.position = transform.position + new Vector3(0, -1, 0);
                 timer = 0;
+            }
+
+            if(gameManager.totalTimer > 90f && gameManager.totalTimer < 120f)
+            {
+                waitTime = 1.2f;
+            }
+
+            if (gameManager.totalTimer > 120f && gameManager.totalTimer < 150f)
+            {
+                waitTime = 1f;
+            }
+
+            if (gameManager.totalTimer > 150f && gameManager.totalTimer < 200f)
+            {
+                waitTime = 0.8f;
+            }
+
+            if (gameManager.totalTimer > 200f)
+            {
+                waitTime = 0.5f;
             }
         }
 

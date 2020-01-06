@@ -39,26 +39,6 @@ namespace Com.BeMyEyes.ShootingGame
                 transform.position = transform.position + new Vector3(0, -1, 0);
                 timer = 0;
             }
-
-            if(gameManager.totalTimer > 90f && gameManager.totalTimer < 120f)
-            {
-                waitTime = 1.2f;
-            }
-
-            if (gameManager.totalTimer > 120f && gameManager.totalTimer < 150f)
-            {
-                waitTime = 1f;
-            }
-
-            if (gameManager.totalTimer > 150f && gameManager.totalTimer < 200f)
-            {
-                waitTime = 0.8f;
-            }
-
-            if (gameManager.totalTimer > 200f)
-            {
-                waitTime = 0.5f;
-            }
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

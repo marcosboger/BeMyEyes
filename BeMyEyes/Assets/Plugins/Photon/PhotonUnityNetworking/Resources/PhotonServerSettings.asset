@@ -79,5 +79,6 @@ MonoBehaviour:
   - spawnRed
   - spawnYellow
   - buttonPress7
+  - spawn10
   DisableAutoOpenWizard: 1
   ShowSettings: 1
